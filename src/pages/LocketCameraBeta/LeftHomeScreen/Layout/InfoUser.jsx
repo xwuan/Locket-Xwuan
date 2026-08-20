@@ -11,12 +11,12 @@ function InfoUser({ user }) {
           {user?.displayName || "Name"}
         </p>
         <a
-          href={`https://locket.cam/${user?.username}`}
+          href={`https://locket.cam/${user?.username || user?.displayName?.toLowerCase().replace(/\s+/g, '_') || "locket_user"}`}
           target="_blank"
           rel="noopener noreferrer"
           className="link underline font-semibold flex items-center"
         >
-          @{user?.username} <Link className="ml-2" size={18} />
+          @{user?.username || user?.displayName?.toLowerCase().replace(/\s+/g, '_') || "locket_user"} <Link className="ml-2" size={18} />
         </a>
       </div>
       <div className="avatar w-16 h-16 disable-select flex-shrink-0">

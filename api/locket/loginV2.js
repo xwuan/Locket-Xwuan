@@ -2,7 +2,6 @@ const LOCKET_FIREBASE_KEY = "AIzaSyCQngaaXQIfJaH0aS2l7REgIjD7nL431So";
 const IOS_BUNDLE_ID = "com.locket.Locket";
 
 export default async function handler(req, res) {
-  // Allow CORS
   res.setHeader("Access-Control-Allow-Credentials", "true");
   res.setHeader("Access-Control-Allow-Origin", "*");
   res.setHeader("Access-Control-Allow-Methods", "GET,OPTIONS,PATCH,DELETE,POST,PUT");
@@ -67,38 +66,48 @@ export default async function handler(req, res) {
       });
     }
 
-    // 2. Fetch extended user profile if available
+    // 2. Fetch extended user profile from Locket API
     let userInfo = {
       localId: data.localId,
       email: data.email,
       displayName: data.displayName || data.email?.split("@")[0] || "Người dùng Locket",
+      username: data.email?.split("@")[0] || "locket_user",
       idToken: data.idToken,
       refreshToken: data.refreshToken,
       expiresIn: data.expiresIn,
       profilePicture: data.profilePicture || null,
+      photoUrl: data.profilePicture || null,
     };
 
     try {
-      const accountRes = await fetch(
-        `https://identitytoolkit.googleapis.com/v1/accounts:lookup?key=${LOCKET_FIREBASE_KEY}`,
-        {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-            "X-Ios-Bundle-Identifier": IOS_BUNDLE_ID,
-          },
-          body: JSON.stringify({ idToken: data.idToken }),
+      const locketUserRes = await fetch("https://api.locketcamera.com/fetchUserV2", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          "Authorization": `Bearer ${data.idToken}`,
+          "X-Ios-Bundle-Identifier": IOS_BUNDLE_ID,
+          "User-Agent": "Locket/1.196.0 (iPhone; iOS 17.5.1; Scale/3.00)",
+        },
+        body: JSON.stringify({
+          data: { user_uid: data.localId },
+        }),
+      });
+
+      const locketUserData = await locketUserRes.json();
+      const uData = locketUserData?.result?.data;
+      if (uData) {
+        if (uData.username) userInfo.username = uData.username;
+        if (uData.first_name) {
+          userInfo.displayName = `${uData.first_name} ${uData.last_name || ""}`.trim();
         }
-      );
-      const accountData = await accountRes.json();
-      if (accountData?.users?.[0]) {
-        const u = accountData.users[0];
-        userInfo.displayName = u.displayName || userInfo.displayName;
-        userInfo.photoUrl = u.photoUrl || userInfo.profilePicture;
-        userInfo.profilePicture = u.photoUrl || userInfo.profilePicture;
+        if (uData.profile_picture_url) {
+          userInfo.profilePicture = uData.profile_picture_url;
+          userInfo.photoUrl = uData.profile_picture_url;
+        }
+        if (uData.badge) userInfo.badge = uData.badge;
       }
     } catch (e) {
-      console.warn("Could not fetch extended account info:", e);
+      console.warn("Could not fetch Locket user profile:", e);
     }
 
     return res.status(200).json({

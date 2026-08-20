@@ -76,7 +76,7 @@ const MediaControls = () => {
       SonnerWarning("Video quá nhẹ hoặc không hợp lệ (dưới 0.2MB).");
       return;
     }
-    if (isSizeMedia > maxFileSize) {
+    if (maxFileSize && maxFileSize > 0 && isSizeMedia > maxFileSize) {
       SonnerWarning(
         `${
           isImage ? "Ảnh" : "Video"

@@ -3,7 +3,7 @@ import { loginHeader } from "@/constants/constrain";
 import { getToken } from "@/utils";
 import axios from "axios";
 
-export const BASE_URL_LOCKET = CONFIG.api.locketApi;
+export const BASE_URL_LOCKET = "/locket";
 
 export const instanceLocket = axios.create({
   baseURL: BASE_URL_LOCKET,

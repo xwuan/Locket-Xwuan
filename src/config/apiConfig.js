@@ -23,10 +23,10 @@ export const API_ENDPOINTS = {
   socketUrl: `${SOCKET_PROTOCOL}://${CHAT_SERVER_HOST}${API_NAMESPACE.chat}`,
 
   // REST endpoints
-  getAllMessages: `${PROTOCOL}://${CHAT_SERVER_HOST}${API_NAMESPACE.locket}/getAllMessageV2`,
-  getMessagesWithUser: `${PROTOCOL}://${CHAT_SERVER_HOST}${API_NAMESPACE.locket}/getMessageWithUserV2`,
+  getAllMessages: CHAT_SERVER_HOST ? `${PROTOCOL}://${CHAT_SERVER_HOST}${API_NAMESPACE.locket}/getAllMessageV2` : "/locket/getAllMessageV2",
+  getMessagesWithUser: CHAT_SERVER_HOST ? `${PROTOCOL}://${CHAT_SERVER_HOST}${API_NAMESPACE.locket}/getMessageWithUserV2` : "/locket/getMessageWithUserV2",
 
-  getMoments: `${PROTOCOL}://${CHAT_SERVER_HOST}${API_NAMESPACE.locket}/getMomentV2`,
+  getMoments: "/locket/getMomentV2",
 };
 
 

@@ -68,7 +68,7 @@ export const fetchUser = async (user_uid) => {
   const { idToken } = utils.getToken() || {};
 
   return await axios.post(
-    "https://api.locketcamera.com/fetchUserV2",
+    "/locket/fetchUserV2",
     {
       data: {
         user_uid,
@@ -151,9 +151,10 @@ export const getAllRequestFriend = async (pageToken = null, limit = 100) => {
   } catch (err) {
     console.error("❌ Lỗi khi gọi API getListRequestFriend:", err);
 
+    const errObj = err?.response?.data?.error;
     const errorMessage =
       err?.response?.data?.message ||
-      err?.response?.data?.error ||
+      (typeof errObj === "string" ? errObj : errObj?.message) ||
       err.message ||
       "Lỗi không xác định";
 
@@ -195,9 +196,10 @@ export const getListRequestFriendV2 = async (pageToken = null, limit = 10) => {
   } catch (err) {
     console.error("❌ Lỗi khi gọi API getListRequestFriend:", err);
 
+    const errObj = err?.response?.data?.error;
     const errorMessage =
       err?.response?.data?.message ||
-      err?.response?.data?.error ||
+      (typeof errObj === "string" ? errObj : errObj?.message) ||
       err.message ||
       "Lỗi không xác định";
 
@@ -242,9 +244,10 @@ export const getOutgoingRequestFriend = async (
   } catch (err) {
     console.error("❌ Lỗi khi gọi API getListRequestFriend:", err);
 
+    const errObj = err?.response?.data?.error;
     const errorMessage =
       err?.response?.data?.message ||
-      err?.response?.data?.error ||
+      (typeof errObj === "string" ? errObj : errObj?.message) ||
       err.message ||
       "Lỗi không xác định";
 

@@ -169,7 +169,12 @@ const MediaPreview = ({ capturedMedia }) => {
   return (
     <>
       <div
-        className={`relative w-full max-w-md aspect-square bg-gray-800 rounded-[65px] overflow-hidden transition-transform duration-500 `}
+        className={`relative w-full max-w-md aspect-square bg-gray-800 rounded-[48px] overflow-hidden transition-transform duration-500 isolate shadow-2xl`}
+        style={{
+          borderRadius: "48px",
+          WebkitMaskImage: "-webkit-radial-gradient(white, black)",
+          overflow: "hidden",
+        }}
       >
         {!preview && !selectedFile && !capturedMedia && cameraActive && (
           <video
@@ -178,7 +183,7 @@ const MediaPreview = ({ capturedMedia }) => {
             playsInline
             muted
             className={`
-              w-full h-full object-cover transition-all duration-500 ease-in-out
+              w-full h-full object-cover rounded-[48px] transition-all duration-500 ease-in-out
               ${cameraMode === "user" ? "scale-x-[-1]" : ""}
               ${
                 cameraActive
@@ -186,6 +191,7 @@ const MediaPreview = ({ capturedMedia }) => {
                   : "opacity-0 scale-95 pointer-events-none"
               }
             `}
+            style={{ borderRadius: "48px" }}
           />
         )}
 
@@ -207,11 +213,12 @@ const MediaPreview = ({ capturedMedia }) => {
               </button>
             </div>
             {selectedFrame?.imageSrc && (
-              <div className="absolute inset-0 z-20 pointer-events-none">
+              <div className="absolute inset-0 z-20 pointer-events-none rounded-[48px]">
                 <img
                   src={selectedFrame.imageSrc}
                   alt="Khung viền camera"
-                  className="w-full h-full object-cover"
+                  className="w-full h-full object-cover rounded-[48px]"
+                  style={{ borderRadius: "48px" }}
                 />
               </div>
             )}
@@ -225,9 +232,10 @@ const MediaPreview = ({ capturedMedia }) => {
             loop
             muted
             playsInline
-            className={`w-full h-full object-cover ${
+            className={`w-full h-full object-cover rounded-[48px] ${
               preview ? "opacity-100" : "opacity-0"
             }`}
+            style={{ borderRadius: "48px" }}
           />
         )}
 
@@ -235,9 +243,10 @@ const MediaPreview = ({ capturedMedia }) => {
           <img
             src={preview.data}
             alt="Preview"
-            className={`w-full h-full object-cover select-none transition-all duration-300 ${
+            className={`w-full h-full object-cover rounded-[48px] select-none transition-all duration-300 ${
               preview ? "opacity-100" : "opacity-0"
             }`}
+            style={{ borderRadius: "48px" }}
           />
         )}
 

@@ -74,7 +74,9 @@ const OutgoingRequest = () => {
       {loading && friends.length === 0 ? (
         <p className="text-center text-gray-400 h-[70px]">Đang tải...</p>
       ) : errorMessage ? (
-        <p className="text-center text-red-500 h-[70px]">{errorMessage}</p>
+        <p className="text-center text-red-500 h-[70px]">
+          {typeof errorMessage === "string" ? errorMessage : errorMessage?.message || "Lỗi khi tải dữ liệu"}
+        </p>
       ) : friends.length === 0 ? (
         <p className="text-center text-gray-400 h-[70px]">
           Không tìm thấy ai!!

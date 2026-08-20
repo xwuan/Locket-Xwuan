@@ -227,11 +227,23 @@ const CameraButton = () => {
     }, 600);
   };
 
-  const endHold = (e) => {
-    // Prevent default để tránh conflict trên iOS
-    e.preventDefault();
+  const cancelHold = (e) => {
+    if (e && e.preventDefault) e.preventDefault();
+    if (!holdStartTimeRef.current) return;
+    clearTimeout(holdTimeoutRef.current);
+    clearInterval(intervalRef.current);
+    holdStartTimeRef.current = null;
+    isTryingToRecordRef.current = false;
+    isRecordingRef.current = false;
+    setIsHolding(false);
+  };
 
-    const heldTime = Date.now() - (holdStartTimeRef.current || Date.now());
+  const endHold = (e) => {
+    if (e && e.preventDefault) e.preventDefault();
+    if (!holdStartTimeRef.current) return;
+
+    const heldTime = Date.now() - holdStartTimeRef.current;
+    holdStartTimeRef.current = null;
 
     // Clear timeouts
     clearTimeout(holdTimeoutRef.current);
@@ -365,11 +377,11 @@ const CameraButton = () => {
         <button
           onMouseDown={startHold}
           onMouseUp={endHold}
-          onMouseLeave={endHold}
+          onMouseLeave={cancelHold}
           onTouchStart={startHold}
           onTouchEnd={endHold}
           // Thêm các event cho iOS
-          onTouchCancel={endHold}
+          onTouchCancel={cancelHold}
           onContextMenu={(e) => e.preventDefault()} // Prevent long press menu on iOS
           className="relative flex items-center justify-center w-22 h-22"
           style={{
