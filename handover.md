@@ -194,7 +194,16 @@
   - Bọc toàn bộ các `React.lazy()` component bằng `<Suspense fallback={null}>` (bao gồm `NotificationPrompt`, `StreaksCalender`, `BottomHomeScreen`, v.v.).
   - Bọc try-catch an toàn tuyệt đối cho các hàm phân tích dữ liệu `JSON.parse` từ `localStorage` (`getUser`, `streak`).
   - Loại bỏ màu chữ trắng cố định trong `:root` của `src/index.css` để DaisyUI điều khiển màu sắc chính xác.
-  - Tích hợp `ErrorBoundary` với giao diện màu tối độ tương phản cao, tự động khôi phục dữ liệu.
+### 🔹 Giai đoạn 15: Chuẩn Hóa Toàn Diện Bộ Icon Locket Gold & Tài Nguyên Tĩnh
+- **Đồng bộ hóa 35 App Icon từ thư mục Downloads**:
+  - Trích xuất toàn bộ 35 icon chuẩn iPhone (`*60x60@2x.png`) từ `C:\Users\ADMIN\Downloads\AppIcons\AppIcons`.
+  - Loại bỏ hoàn toàn các file `~ipad` không cần thiết để tránh lỗi mã hóa URL trên Linux CDN.
+  - Chuẩn hóa tên file quốc tế và url-safe trong `public/app-icons/` (ví dụ: `gold_on_black.png`, `pastel_3d_gold.png`, v.v.).
+- **Tối ưu hóa Routing Static Files trong `vercel.json`**:
+  - Cập nhật quy tắc SPA rewrite để loại trừ các thư mục tĩnh (`/app-icons/`, `/images/`, `/fonts/`, `/icons/`), đảm bảo máy chủ luôn trả về file ảnh gốc thay vì file `index.html`.
+- **Cơ chế PWA & Cache-Busting**:
+  - Bật `immediate: true` cho Service Worker registration trong `src/main.jsx`.
+  - Bổ sung cơ chế auto-retry phá vỡ bộ nhớ đệm (`?v=timestamp`) trong `AppIconPicker.jsx`.
 
 ---
 
@@ -208,5 +217,6 @@
 
 ## 📌 4. Checklist & Kế hoạch phát triển tiếp theo
 - [x] Triển khai thành công lên Vercel + Supabase.
+- [x] Đồng bộ trọn bộ 35 icon Locket Gold và logo thương hiệu Locket Xwuan.
 - [ ] Tinh chỉnh giao diện cá nhân hóa theo sở thích của bạn (giao diện dark mode, font chữ, layout camera).
 - [ ] Tối ưu hóa bộ nhớ đệm Offline IndexedDB để xem lại moments mượt mà ngay cả khi không có mạng.
