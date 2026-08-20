@@ -1,5 +1,6 @@
 const IOS_BUNDLE_ID = "com.locket.Locket";
 const LOCKET_API_BASE = "https://api.locketcamera.com";
+const FIRESTORE_PROJECT = "locket-camera";
 
 const extractTimestamp = (rawDate) => {
   if (!rawDate) return Date.now();
@@ -16,6 +17,29 @@ const extractTimestamp = (rawDate) => {
   }
   return Date.now();
 };
+
+function parseFirestoreDoc(doc) {
+  if (!doc || !doc.fields) return null;
+  const fields = doc.fields || {};
+  const id = doc.name ? doc.name.split("/").pop() : "";
+  const timeMs = extractTimestamp(fields.date?.timestampValue || fields.created_at?.timestampValue);
+
+  return {
+    id,
+    uid: id,
+    user: fields.user?.stringValue || "",
+    userId: fields.user?.stringValue || "",
+    thumbnailUrl: fields.thumbnail_url?.stringValue || fields.thumbnailUrl?.stringValue || fields.image_url?.stringValue || "",
+    thumbnail_url: fields.thumbnail_url?.stringValue || fields.thumbnailUrl?.stringValue || fields.image_url?.stringValue || "",
+    videoUrl: fields.video_url?.stringValue || fields.videoUrl?.stringValue || null,
+    video_url: fields.video_url?.stringValue || fields.videoUrl?.stringValue || null,
+    caption: fields.caption?.stringValue || "",
+    createTime: timeMs,
+    date: timeMs,
+    recipients: fields.recipients?.arrayValue?.values?.map((v) => v.stringValue) || [],
+    overlay: fields.overlay?.stringValue || null,
+  };
+}
 
 export default async function handler(req, res) {
   res.setHeader("Access-Control-Allow-Credentials", "true");
@@ -80,57 +104,114 @@ export default async function handler(req, res) {
   // 2. Lấy toàn bộ Moments (getMomentV2 / getMoments)
   if (action === "getMomentV2" || action === "getMoments") {
     try {
-      let allRawMoments = [];
-      let excludedUsers = [];
-
-      // Gọi lấy bài viết mới nhất
-      const response = await fetch(`${LOCKET_API_BASE}/getLatestMomentV2`, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          "Authorization": authHeader,
-          "X-Ios-Bundle-Identifier": IOS_BUNDLE_ID,
-          "User-Agent": "Locket/1.196.0 (iPhone; iOS 17.5.1; Scale/3.00)",
-        },
-        body: JSON.stringify({
-          data: {
-            excluded_users: [],
-            fetch_streak: true,
-            should_count_missed_moments: true,
-          },
-        }),
-      });
-
-      const data = await response.json();
-      const initialMoments = data?.result?.data || [];
-      allRawMoments.push(...initialMoments);
-
-      // Chuẩn hóa dữ liệu moments
-      const seenIds = new Set();
       const normalizedMoments = [];
+      const seenIds = new Set();
 
-      allRawMoments.forEach((m) => {
-        const id = m.uid || m.id;
-        if (!id || seenIds.has(id)) return;
-        seenIds.add(id);
+      // A. Truy vấn Firestore Database chính thức của Locket để lấy toàn bộ lịch sử moments
+      if (authHeader) {
+        try {
+          const friendFilter = req.body?.friendId || req.body?.userUid;
+          const queryPayload = {
+            structuredQuery: {
+              from: [{ collectionId: "moments" }],
+              orderBy: [{ field: { fieldPath: "date" }, direction: "DESCENDING" }],
+              limit: req.body?.limit || 50,
+            },
+          };
 
-        const timeMs = extractTimestamp(m.date || m.created_at || m.timestamp);
-        normalizedMoments.push({
-          id: id,
-          uid: id,
-          user: m.user,
-          userId: m.user,
-          thumbnailUrl: m.thumbnail_url || m.image_url || m.thumbnailUrl,
-          thumbnail_url: m.thumbnail_url || m.image_url || m.thumbnailUrl,
-          videoUrl: m.video_url || m.videoUrl || null,
-          video_url: m.video_url || m.videoUrl || null,
-          caption: m.caption || "",
-          createTime: timeMs,
-          date: timeMs,
-          recipients: m.recipients || [],
-          overlay: m.overlay || null,
+          if (friendFilter) {
+            queryPayload.structuredQuery.where = {
+              fieldFilter: {
+                field: { fieldPath: "user" },
+                op: "EQUAL",
+                value: { stringValue: friendFilter },
+              },
+            };
+          }
+
+          const firestoreRes = await fetch(
+            `https://firestore.googleapis.com/v1/projects/${FIRESTORE_PROJECT}/databases/(default)/documents:runQuery`,
+            {
+              method: "POST",
+              headers: {
+                "Content-Type": "application/json",
+                "Authorization": authHeader,
+                "X-Ios-Bundle-Identifier": IOS_BUNDLE_ID,
+                "User-Agent": "Locket/1.196.0 (iPhone; iOS 17.5.1; Scale/3.00)",
+              },
+              body: JSON.stringify(queryPayload),
+            }
+          );
+
+          if (firestoreRes.ok) {
+            const firestoreData = await firestoreRes.json();
+            if (Array.isArray(firestoreData)) {
+              firestoreData.forEach((item) => {
+                if (item.document) {
+                  const m = parseFirestoreDoc(item.document);
+                  if (m && m.id && !seenIds.has(m.id)) {
+                    seenIds.add(m.id);
+                    normalizedMoments.push(m);
+                  }
+                }
+              });
+            }
+          }
+        } catch (fErr) {
+          console.warn("Firestore query fallback:", fErr.message);
+        }
+      }
+
+      // B. Gọi getLatestMomentV2 từ Locket API để lấy khoảnh khắc mới nhất
+      try {
+        const response = await fetch(`${LOCKET_API_BASE}/getLatestMomentV2`, {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            "Authorization": authHeader,
+            "X-Ios-Bundle-Identifier": IOS_BUNDLE_ID,
+            "User-Agent": "Locket/1.196.0 (iPhone; iOS 17.5.1; Scale/3.00)",
+          },
+          body: JSON.stringify({
+            data: {
+              excluded_users: [],
+              fetch_streak: true,
+              should_count_missed_moments: true,
+            },
+          }),
         });
-      });
+
+        const data = await response.json();
+        const initialMoments = data?.result?.data || [];
+
+        initialMoments.forEach((m) => {
+          const id = m.uid || m.id;
+          if (!id || seenIds.has(id)) return;
+          seenIds.add(id);
+
+          const timeMs = extractTimestamp(m.date || m.created_at || m.timestamp);
+          normalizedMoments.push({
+            id: id,
+            uid: id,
+            user: m.user,
+            userId: m.user,
+            thumbnailUrl: m.thumbnail_url || m.image_url || m.thumbnailUrl,
+            thumbnail_url: m.thumbnail_url || m.image_url || m.thumbnailUrl,
+            videoUrl: m.video_url || m.videoUrl || null,
+            video_url: m.video_url || m.videoUrl || null,
+            caption: m.caption || "",
+            createTime: timeMs,
+            date: timeMs,
+            recipients: m.recipients || [],
+            overlay: m.overlay || null,
+          });
+        });
+      } catch (lErr) {
+        console.warn("getLatestMomentV2 error:", lErr.message);
+      }
+
+      // Sắp xếp giảm dần theo thời gian tạo
+      normalizedMoments.sort((a, b) => (b.createTime || 0) - (a.createTime || 0));
 
       return res.status(200).json({
         success: true,
