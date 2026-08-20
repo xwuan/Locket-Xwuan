@@ -1,5 +1,5 @@
 import React, { useState, useMemo, useEffect } from "react";
-import LoadingRing from "@/components/ui/Loading/ring";
+import LoadingRing from "@/components/UI/Loading/ring";
 import { useFeatureVisible } from "@/hooks/useFeature";
 import { useStreak } from "@/hooks/useStreak";
 import { useApp } from "@/context/AppContext";

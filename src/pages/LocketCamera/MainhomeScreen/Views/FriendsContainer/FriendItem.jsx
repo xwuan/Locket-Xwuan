@@ -1,7 +1,7 @@
 // components/FriendItem.jsx
 import React, { useState } from "react";
 import { X } from "lucide-react";
-import Modal from "@/components/ui/Modal";
+import Modal from "@/components/UI/Modal";
 
 export default function FriendItem({ friend, onDelete }) {
   const [openModal, setOpenModal] = useState(false);

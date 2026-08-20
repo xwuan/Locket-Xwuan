@@ -3,7 +3,7 @@ import { AuthContext } from "@/context/AuthLocket";
 import { uploadMediaToSupabase, createMoment } from "@/services/SupabaseServices";
 import { UploadCloud, Image as ImageIcon, Film, CheckCircle2, Sparkles, AlertCircle, ArrowRight } from "lucide-react";
 import { showToast } from "@/components/Toast";
-import LoadingRing from "@/components/ui/Loading/ring";
+import LoadingRing from "@/components/UI/Loading/ring";
 import { useNavigate } from "react-router-dom";
 
 export default function LocketUploadCollabPage() {

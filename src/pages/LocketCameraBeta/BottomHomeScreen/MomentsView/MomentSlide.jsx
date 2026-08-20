@@ -1,4 +1,4 @@
-import LoadingRing from "@/components/ui/Loading/ring";
+import LoadingRing from "@/components/UI/Loading/ring";
 import { X } from "lucide-react";
 import { useState } from "react";
 import CaptionOverlay from "./CaptionOverlay";

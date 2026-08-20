@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from "react";
 import { Download, Trash2, X } from "lucide-react";
-import PlanBadge from "@/components/ui/PlanBadge/PlanBadge";
+import PlanBadge from "@/components/UI/PlanBadge/PlanBadge";
 import { useApp } from "@/context/AppContext";
-import { SonnerSuccess, SonnerWarning } from "@/components/ui/SonnerToast";
-import Modal from "@/components/ui/Modal";
+import { SonnerSuccess, SonnerWarning } from "@/components/UI/SonnerToast";
+import Modal from "@/components/UI/Modal";
 import { deletePayloadById } from "@/process/uploadQueue";
 import { DeleteMoment } from "@/services";
 import { getMomentById } from "@/cache/momentDB";

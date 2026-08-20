@@ -4,7 +4,7 @@ import { useApp } from "@/context/AppContext";
 import { useBatteryStatus } from "@/utils";
 import { useLocationOptions, useLocationWeather } from "@/utils/enviroment";
 import { getInfoMusicByUrl } from "@/services";
-import { SonnerError, SonnerSuccess } from "@/components/ui/SonnerToast";
+import { SonnerError, SonnerSuccess } from "@/components/UI/SonnerToast";
 import { StarProgress } from "@/pages/LocketCameraBeta/MainHomeScreen/Widgets/StarRating/StarProgress";
 
 export default function GeneralThemes({ title }) {

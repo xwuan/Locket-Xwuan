@@ -18,7 +18,7 @@ import {
   Info,
 } from "lucide-react";
 import { showToast } from "@/components/Toast";
-import LoadingRing from "@/components/ui/Loading/ring";
+import LoadingRing from "@/components/UI/Loading/ring";
 import {
   saveMessageWithUsers,
   getAllMessages,

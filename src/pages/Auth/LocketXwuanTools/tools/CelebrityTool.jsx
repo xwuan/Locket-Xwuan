@@ -7,7 +7,7 @@ import {
   SonnerInfo,
   SonnerSuccess,
   SonnerWarning,
-} from "@/components/ui/SonnerToast";
+} from "@/components/UI/SonnerToast";
 import { Copy, RefreshCcw } from "lucide-react";
 import { useFeatureVisible, useGetCode } from "@/hooks/useFeature";
 import { PiExport } from "react-icons/pi";

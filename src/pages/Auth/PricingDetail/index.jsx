@@ -6,7 +6,7 @@ import LoadingPage from "@/components/pages/LoadingPage";
 import * as services from "@/services";
 import NoticePricing from "./NoticePricing";
 import PlanDetailCard from "./PlanDetail";
-import { SonnerWarning } from "@/components/ui/SonnerToast";
+import { SonnerWarning } from "@/components/UI/SonnerToast";
 
 export default function PlanDetailPage() {
   const { user, userPlan } = useContext(AuthContext);

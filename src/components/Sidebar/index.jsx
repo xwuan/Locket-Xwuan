@@ -34,8 +34,8 @@ import api from "@/lib/axios";
 import { MenuItem } from "./MenuItem";
 import { AuthButton } from "./AuthButton";
 import ThemeToggle from "./ThemeToggle";
-import PlanBadge from "../ui/PlanBadge/PlanBadge";
-import { SonnerError, SonnerSuccess } from "../ui/SonnerToast";
+import PlanBadge from "../UI/PlanBadge/PlanBadge";
+import { SonnerError, SonnerSuccess } from "../UI/SonnerToast";
 import { clearAllData } from "@/utils/SyncData/clearAllData";
 
 const Sidebar = () => {

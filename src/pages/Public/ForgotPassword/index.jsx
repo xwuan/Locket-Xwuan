@@ -1,9 +1,9 @@
 import { useState, useEffect } from "react";
 import { showToast } from "@/components/Toast";
 import * as DioService from "@/services/LocketXwuanServices";
-import LoadingRing from "@/components/ui/Loading/ring";
+import LoadingRing from "@/components/UI/Loading/ring";
 import { Link } from "react-router-dom";
-import { SonnerError, SonnerSuccess, SonnerWarning } from "@/components/ui/SonnerToast";
+import { SonnerError, SonnerSuccess, SonnerWarning } from "@/components/UI/SonnerToast";
 
 const ForgotPassword = () => {
   const [email, setEmail] = useState("");

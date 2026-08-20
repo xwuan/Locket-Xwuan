@@ -2,9 +2,9 @@ import React, { useState, useRef, useEffect } from "react";
 import { SendReactMoment } from "@/services/LocketXwuanServices/ActionMoments";
 import { Laugh, X } from "lucide-react";
 import { allEmojis } from "@/constants/emojis";
-import PlanBadge from "@/components/ui/PlanBadge/PlanBadge";
+import PlanBadge from "@/components/UI/PlanBadge/PlanBadge";
 import { useApp } from "@/context/AppContext";
-import { SonnerError, SonnerSuccess } from "@/components/ui/SonnerToast";
+import { SonnerError, SonnerSuccess } from "@/components/UI/SonnerToast";
 
 const popularEmojis = allEmojis.slice(0, 20);
 

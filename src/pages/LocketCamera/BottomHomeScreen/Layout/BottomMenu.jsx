@@ -3,9 +3,9 @@ import InputForMoment from "./InputForMoment";
 import { useApp } from "@/context/AppContext";
 import { showWarning, showSuccess } from "@/components/Toast";
 import { useState } from "react";
-import Modal from "@/components/ui/Modal";
+import Modal from "@/components/UI/Modal";
 import { DeleteMoment } from "@/services";
-import { SonnerSuccess } from "@/components/ui/SonnerToast";
+import { SonnerSuccess } from "@/components/UI/SonnerToast";
 import { useMoments } from "@/hooks/useMoments";
 
 const BottomMenu = () => {

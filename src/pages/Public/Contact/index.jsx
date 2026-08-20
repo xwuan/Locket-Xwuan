@@ -1,6 +1,6 @@
 import React from "react";
 import { Mail, MapPin } from "lucide-react";
-import MailForm from "@/components/ui/SupportForms/MailForm";
+import MailForm from "@/components/UI/SupportForms/MailForm";
 import { COMMUNITY_CONFIG, CONTACT_CONFIG } from "@/config";
 
 export default function Contact() {

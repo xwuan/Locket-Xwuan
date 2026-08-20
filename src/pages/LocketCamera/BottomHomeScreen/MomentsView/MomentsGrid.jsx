@@ -4,7 +4,7 @@ import { RefreshCw, Trash2 } from "lucide-react";
 import { useMoments } from "@/hooks/useMoments";
 import { showSuccess } from "@/components/Toast";
 import { useApp } from "@/context/AppContext";
-import LoadingRing from "@/components/ui/Loading/ring";
+import LoadingRing from "@/components/UI/Loading/ring";
 import { MOMENTS_CONFIG } from "@/config/configAlias";
 
 const MomentsGrid = ({ visibleCount: initialVisibleCount }) => {

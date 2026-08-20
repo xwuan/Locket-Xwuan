@@ -9,7 +9,7 @@ import {
   SonnerInfo,
   SonnerSuccess,
   SonnerWarning,
-} from "@/components/ui/SonnerToast";
+} from "@/components/UI/SonnerToast";
 
 export default function PayPage() {
   const { user } = useContext(AuthContext);

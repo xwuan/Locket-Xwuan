@@ -2,7 +2,7 @@
 import React from "react";
 import { Plus } from "lucide-react";
 import { SendRequestToFriend } from "@/services";
-import { SonnerWarning } from "@/components/ui/SonnerToast";
+import { SonnerWarning } from "@/components/UI/SonnerToast";
 
 export default function FriendFind({ friend }) {
   // 👉 Tách hàm xử lý ra ngoài

@@ -5,8 +5,8 @@ import {
 } from "@/services";
 import { useFeatureVisible } from "@/hooks/useFeature";
 import { formatDateTime } from "@/utils/Formats";
-import LoadingRing from "@/components/ui/Loading/ring";
-import { SonnerError, SonnerSuccess } from "@/components/ui/SonnerToast";
+import LoadingRing from "@/components/UI/Loading/ring";
+import { SonnerError, SonnerSuccess } from "@/components/UI/SonnerToast";
 import { showInfo } from "@/components/Toast";
 
 export default function DeleteFriendsTool() {

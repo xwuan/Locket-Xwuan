@@ -1,7 +1,7 @@
 import { CalendarHeart, LayoutGrid, Share } from "lucide-react";
 import InputForMoment from "./InputForMoment";
 import { useApp } from "@/context/AppContext";
-import { SonnerInfo } from "@/components/ui/SonnerToast";
+import { SonnerInfo } from "@/components/UI/SonnerToast";
 
 const BottomMenu = ({ setIsBottomOpen, setOptionModalOpen }) => {
   const { navigation, post } = useApp();

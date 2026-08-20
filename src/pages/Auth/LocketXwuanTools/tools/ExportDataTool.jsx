@@ -1,8 +1,8 @@
 import React, { useState } from "react";
-import LoadingRing from "@/components/ui/Loading/ring";
+import LoadingRing from "@/components/UI/Loading/ring";
 import { useFeatureVisible } from "@/hooks/useFeature";
 import { getAllFriendDetails } from "@/cache/friendsDB";
-import { SonnerWarning } from "@/components/ui/SonnerToast";
+import { SonnerWarning } from "@/components/UI/SonnerToast";
 
 export default function ExportDataTool() {
   const actionExport = useFeatureVisible("data_export_tool");

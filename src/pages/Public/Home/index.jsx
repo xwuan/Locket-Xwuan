@@ -4,10 +4,10 @@ import { Link } from "react-router-dom";
 import "./styles.css";
 import { CONFIG } from "@/config";
 const NotificationPrompt = lazy(() =>
-  import("@/components/ui/NotificationPrompt")
+  import("@/components/UI/NotificationPrompt")
 );
 const FeatureCardMarquee = lazy(() =>
-  import("@/components/ui/Marquee/FeatureCardMarquee")
+  import("@/components/UI/Marquee/FeatureCardMarquee")
 );
 const StepsSection = lazy(() => import("./StepsSection"));
 

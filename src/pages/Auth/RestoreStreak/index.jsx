@@ -15,21 +15,21 @@ import {
 } from "lucide-react";
 import * as utils from "@/utils";
 import * as services from "@/services";
-import LoadingRing from "@/components/ui/Loading/ring.jsx";
+import LoadingRing from "@/components/UI/Loading/ring.jsx";
 import { useApp } from "@/context/AppContext.jsx";
 import { Link } from "react-router-dom";
-import Hourglass from "@/components/ui/Loading/hourglass.jsx";
-import MediaSizeInfo from "@/components/ui/MediaSizeInfo/index.jsx";
+import Hourglass from "@/components/UI/Loading/hourglass.jsx";
+import MediaSizeInfo from "@/components/UI/MediaSizeInfo/index.jsx";
 import { defaultPostOverlay } from "@/stores/usePost.js";
 import { getMaxUploads } from "@/hooks/useFeature.js";
 import { AuthContext } from "@/context/AuthLocket.jsx";
-import PlanBadge from "@/components/ui/PlanBadge/PlanBadge.jsx";
+import PlanBadge from "@/components/UI/PlanBadge/PlanBadge.jsx";
 import { getPostedMoments, savePostedMoment } from "@/process/uploadQueue.js";
 import {
   SonnerError,
   SonnerInfo,
   SonnerSuccess,
-} from "@/components/ui/SonnerToast";
+} from "@/components/UI/SonnerToast";
 import { fetchStreak } from "@/utils/SyncData/streakUtils";
 import { useNavigate } from "react-router-dom";
 

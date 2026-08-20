@@ -3,13 +3,13 @@ import { useApp } from "@/context/AppContext";
 import { RefreshCcw, X } from "lucide-react";
 import { FaUserFriends, FaSearchPlus } from "react-icons/fa";
 import { FindFriendByUserName, refreshFriends, removeFriend } from "@/services";
-import LoadingRing from "@/components/ui/Loading/ring";
+import LoadingRing from "@/components/UI/Loading/ring";
 import FriendItem from "./FriendItem";
-import SearchInput from "@/components/ui/Input/SearchInput";
+import SearchInput from "@/components/UI/Input/SearchInput";
 import { showError } from "@/components/Toast";
 import FriendFind from "./FriendFind";
 import IncomingFriendRequests from "./IncomingRequests";
-import { SonnerError, SonnerSuccess } from "@/components/ui/SonnerToast";
+import { SonnerError, SonnerSuccess } from "@/components/UI/SonnerToast";
 import OutgoingRequest from "./OutgoingRequest";
 import {
   setFriendDetail,

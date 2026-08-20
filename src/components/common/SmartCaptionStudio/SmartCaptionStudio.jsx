@@ -19,7 +19,7 @@ import {
 import { showToast } from "@/components/Toast";
 import { useLocationWeather } from "@/utils/enviroment/weather";
 import { TRENDING_GIF_CATEGORIES, searchGiphy } from "@/utils/gifUtils";
-import LoadingRing from "@/components/ui/Loading/ring";
+import LoadingRing from "@/components/UI/Loading/ring";
 
 // 1. Các danh mục Caption
 export const CAPTION_TABS = [

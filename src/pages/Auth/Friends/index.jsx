@@ -21,7 +21,7 @@ import {
   X,
 } from "lucide-react";
 import { showToast } from "@/components/Toast";
-import LoadingRing from "@/components/ui/Loading/ring";
+import LoadingRing from "@/components/UI/Loading/ring";
 
 export default function FriendsPage() {
   const { user } = useContext(AuthContext);

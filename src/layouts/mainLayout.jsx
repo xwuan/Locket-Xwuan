@@ -5,7 +5,7 @@ import Footer from "@/components/Footer";
 import LoadingPage from "../components/pages/LoadingPage";
 import Sidebar from "@/components/Sidebar";
 
-const FloatingActions = lazy(() => import("@/components/ui/FloatingWidget"));
+const FloatingActions = lazy(() => import("@/components/UI/FloatingWidget"));
 const CropImageStudio = lazy(() =>
   import("@/components/common/CropImageStudio")
 );

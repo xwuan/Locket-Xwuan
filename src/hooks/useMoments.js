@@ -8,7 +8,7 @@ import {
   getMomentsByUser,
 } from "@/cache/momentDB";
 import api from "@/lib/axios";
-import { SonnerError, SonnerSuccess } from "@/components/ui/SonnerToast";
+import { SonnerError, SonnerSuccess } from "@/components/UI/SonnerToast";
 
 export function useMoments(userUid = null, initialLimit = 50) {
   const [moments, setMoments] = useState([]);

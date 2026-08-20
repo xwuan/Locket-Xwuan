@@ -1,7 +1,7 @@
 import { useContext, useEffect, useState } from "react";
 import { useApp } from "@/context/AppContext";
 import { Check, RotateCcw, X } from "lucide-react";
-import LoadingOverlay from "@/components/ui/Loading/LineSpinner";
+import LoadingOverlay from "@/components/UI/Loading/LineSpinner";
 import BottomMenu from "../Layout/BottomMenu";
 import { enRetryPayload, getQueuePayloads } from "@/process/uploadQueue";
 import { AuthContext } from "@/context/AuthLocket";

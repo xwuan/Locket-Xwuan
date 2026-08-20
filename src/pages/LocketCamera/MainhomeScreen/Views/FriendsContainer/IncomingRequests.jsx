@@ -7,7 +7,7 @@ import {
 } from "@/services";
 import { useApp } from "@/context/AppContext";
 import { Check } from "lucide-react";
-import { SonnerError, SonnerSuccess } from "@/components/ui/SonnerToast";
+import { SonnerError, SonnerSuccess } from "@/components/UI/SonnerToast";
 import { useFriendStore } from "@/stores/useFriendStore";
 
 const IncomingFriendRequests = () => {

@@ -2,7 +2,7 @@ import {
   SonnerError,
   SonnerSuccess,
   SonnerWarning,
-} from "@/components/ui/SonnerToast";
+} from "@/components/UI/SonnerToast";
 import { PostMoments } from "@/services";
 import { normalizeMoment } from "@/utils";
 import { fetchStreak } from "@/utils/SyncData/streakUtils";

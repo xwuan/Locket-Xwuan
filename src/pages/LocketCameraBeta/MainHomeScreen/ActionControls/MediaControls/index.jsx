@@ -9,7 +9,7 @@ import {
   SonnerError,
   SonnerSuccess,
   SonnerWarning,
-} from "@/components/ui/SonnerToast";
+} from "@/components/UI/SonnerToast";
 import { enqueuePayload, getQueuePayloads } from "@/process/uploadQueue.js";
 import { AuthContext } from "@/context/AuthLocket.jsx";
 

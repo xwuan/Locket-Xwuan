@@ -2,8 +2,8 @@ import { useState, useContext, useEffect } from "react";
 import * as DioService from "@/services/LocketXwuanServices";
 import { AuthContext } from "@/context/AuthLocket";
 import * as utils from "@/utils";
-import LoadingRing from "@/components/ui/Loading/ring";
-import StatusServer from "@/components/ui/StatusServer";
+import LoadingRing from "@/components/UI/Loading/ring";
+import StatusServer from "@/components/UI/StatusServer";
 import { useApp } from "@/context/AppContext";
 import Turnstile from "react-turnstile";
 import { Link } from "react-router-dom";
@@ -11,7 +11,7 @@ import {
   SonnerError,
   SonnerInfo,
   SonnerSuccess,
-} from "@/components/ui/SonnerToast";
+} from "@/components/UI/SonnerToast";
 import { CONFIG } from "@/config";
 import RotatingCircleText from "./RotatingCircleText";
 import { ensureDBOwner } from "@/cache/configDB";

@@ -1,4 +1,4 @@
-import SnowButton from "@/pages/LocketCamera/MainhomeScreen/Views/CustomeStudio/CaptionItems/SnowCaption";
+import SnowButton from "@/pages/LocketCamera/MainHomeScreen/Views/CustomeStudio/CaptionItems/SnowCaption";
 import React from "react";
 
 export default function WhitePage() {

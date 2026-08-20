@@ -1,4 +1,4 @@
-import LoadingRing from "@/components/ui/Loading/ring";
+import LoadingRing from "@/components/UI/Loading/ring";
 import { MoonStar } from "lucide-react";
 
 const ActivityButton = ({ activity, isLoading, onClick }) => {

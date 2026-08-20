@@ -5,7 +5,7 @@ import clsx from "clsx";
 import { getToken } from "@/utils";
 import FriendSelectItems from "./FriendSelectItems";
 import { useFriendStore } from "@/stores/useFriendStore";
-import { SonnerInfo } from "@/components/ui/SonnerToast";
+import { SonnerInfo } from "@/components/UI/SonnerToast";
 
 const SelectFriendsList = () => {
   const { friendDetails, loading, setFriendDetails } = useFriendStore();

@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from "react";
 import { Ban, EyeOff, UserRoundX, X } from "lucide-react";
-import Modal from "@/components/ui/Modal";
+import Modal from "@/components/UI/Modal";
 
 export default function FriendItem({ friends, onDelete, onHidden }) {
   const [openMenuUid, setOpenMenuUid] = useState(null);

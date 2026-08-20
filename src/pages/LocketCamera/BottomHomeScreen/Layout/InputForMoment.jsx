@@ -5,7 +5,7 @@ import { useApp } from "@/context/AppContext";
 import { GetInfoMoment, SendMessageMoment, SendReactMoment } from "@/services";
 import { getMomentById } from "@/cache/momentDB";
 import { AuthContext } from "@/context/AuthLocket";
-import { SonnerError, SonnerSuccess } from "@/components/ui/SonnerToast";
+import { SonnerError, SonnerSuccess } from "@/components/UI/SonnerToast";
 import { getFriendDetail } from "@/cache/friendsDB";
 import ActivitySection from "../Modal/ActivityViews/ActivityModal";
 

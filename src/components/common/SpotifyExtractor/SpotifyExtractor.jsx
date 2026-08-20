@@ -3,7 +3,7 @@ import { fetchSpotifyTrackInfo } from "@/utils/spotifyUtils";
 import SpotifyPlayerBanner from "@/components/common/SpotifyPlayerBanner/SpotifyPlayerBanner";
 import { Music, Search, Link2, Sparkles, Check, X, RefreshCw } from "lucide-react";
 import { showToast } from "@/components/Toast";
-import LoadingRing from "@/components/ui/Loading/ring";
+import LoadingRing from "@/components/UI/Loading/ring";
 
 export default function SpotifyExtractor({ onSelectSpotifyTrack, onClose }) {
   const [inputUrl, setInputUrl] = useState("");

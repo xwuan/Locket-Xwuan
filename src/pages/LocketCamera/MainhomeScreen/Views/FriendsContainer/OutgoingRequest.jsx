@@ -7,7 +7,7 @@ import {
 import { useApp } from "@/context/AppContext";
 import { X } from "lucide-react";
 import { BsCheckCircleFill } from "react-icons/bs";
-import { SonnerError, SonnerSuccess } from "@/components/ui/SonnerToast";
+import { SonnerError, SonnerSuccess } from "@/components/UI/SonnerToast";
 
 const OutgoingRequest = () => {
   const { navigation } = useApp();

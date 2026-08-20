@@ -8,9 +8,9 @@ import {
   removeFriend,
   toggleHiddenFriend,
 } from "@/services";
-import LoadingRing from "@/components/ui/Loading/ring";
+import LoadingRing from "@/components/UI/Loading/ring";
 import FriendItem from "./FriendItem";
-import SearchInput from "@/components/ui/Input/SearchInput";
+import SearchInput from "@/components/UI/Input/SearchInput";
 import { showError } from "@/components/Toast";
 import FriendFind from "./FriendFind";
 import IncomingFriendRequests from "./IncomingRequests";
@@ -18,7 +18,7 @@ import {
   SonnerError,
   SonnerSuccess,
   SonnerWarning,
-} from "@/components/ui/SonnerToast";
+} from "@/components/UI/SonnerToast";
 import OutgoingRequest from "./OutgoingRequest";
 import {
   setFriendDetail,

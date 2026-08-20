@@ -1,6 +1,6 @@
 import React, { lazy, Suspense, useEffect, useRef } from "react";
 
-import MediaSizeInfo from "@/components/ui/MediaSizeInfo";
+import MediaSizeInfo from "@/components/UI/MediaSizeInfo";
 import { showInfo } from "@/components/Toast";
 import { getAvailableCameras } from "@/utils";
 const AutoResizeCaption = lazy(() => import("../CaptionViews"));

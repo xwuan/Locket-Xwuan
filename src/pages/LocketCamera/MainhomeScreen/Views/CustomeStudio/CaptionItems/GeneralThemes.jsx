@@ -5,7 +5,7 @@ import { useBatteryStatus } from "@/utils";
 import { useLocationOptions, useLocationWeather } from "@/utils/enviroment";
 import { StarProgress } from "../../StarRating/StarProgress";
 import { getInfoMusicByUrl } from "@/services";
-import { SonnerError, SonnerSuccess } from "@/components/ui/SonnerToast";
+import { SonnerError, SonnerSuccess } from "@/components/UI/SonnerToast";
 
 export default function GeneralThemes({ title }) {
   const { navigation, post } = useApp();

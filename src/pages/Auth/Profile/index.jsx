@@ -1,6 +1,6 @@
 import { useContext, useState } from "react";
 import { AuthContext } from "@/context/AuthLocket";
-import LoadingRing from "@/components/ui/Loading/ring";
+import LoadingRing from "@/components/UI/Loading/ring";
 
 export default function Profile() {
   const { user, userPlan } = useContext(AuthContext);

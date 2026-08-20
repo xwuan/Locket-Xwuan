@@ -1,7 +1,7 @@
 import React, { useState, useRef } from "react";
 import { ArrowUp } from "lucide-react";
 import { sendMessage } from "@/services";
-import { SonnerSuccess } from "@/components/ui/SonnerToast";
+import { SonnerSuccess } from "@/components/UI/SonnerToast";
 
 const ChatDetailFooter = ({ selectedChat }) => {
   const [message, setMessage] = useState("");

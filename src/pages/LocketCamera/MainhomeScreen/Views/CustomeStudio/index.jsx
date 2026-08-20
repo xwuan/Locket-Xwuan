@@ -6,7 +6,7 @@ import CaptionIconSelector from "./CaptionItems/CaptionIconSelector";
 import GeneralThemes from "./CaptionItems/GeneralThemes";
 import ThemesCustomes from "./CaptionItems/ThemesCustomes";
 import ImageCaptionSelector from "./CaptionItems/ImageCaption";
-import PlanBadge from "@/components/ui/PlanBadge/PlanBadge";
+import PlanBadge from "@/components/UI/PlanBadge/PlanBadge";
 import Footer from "@/components/Footer";
 import CaptionGifThemes from "./CaptionItems/CaptionGifThemes";
 import { useFeatureVisible } from "@/hooks/useFeature";

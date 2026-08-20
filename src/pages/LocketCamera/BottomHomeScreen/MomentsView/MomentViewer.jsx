@@ -1,7 +1,7 @@
 import { useContext, useEffect, useState } from "react";
 import { useApp } from "@/context/AppContext";
 import { X } from "lucide-react";
-import LoadingRing from "@/components/ui/Loading/ring";
+import LoadingRing from "@/components/UI/Loading/ring";
 import { AuthContext } from "@/context/AuthLocket";
 import { useMoments } from "@/hooks/useMoments";
 import UserInfo from "../Layout/UserInfoView";

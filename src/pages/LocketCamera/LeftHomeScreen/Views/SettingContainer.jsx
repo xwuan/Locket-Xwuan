@@ -4,7 +4,7 @@ import { AuthContext } from "../../../../context/AuthLocket";
 import { Plus, RefreshCcw, Trash2, UserPlus, Users, X } from "lucide-react";
 import { FaUserFriends } from "react-icons/fa";
 import { refreshFriends, removeFriend } from "../../../../services";
-import LoadingRing from "../../../../components/ui/Loading/ring";
+import LoadingRing from "../../../../components/UI/Loading/ring";
 import Settings from "../../../Public/Settings";
 import SettingView from "../../../Public/Settings/SettingView";
 

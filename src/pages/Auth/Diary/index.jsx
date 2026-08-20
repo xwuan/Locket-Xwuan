@@ -2,7 +2,7 @@ import React, { useState, useEffect, useContext, useMemo } from "react";
 import { AuthContext } from "@/context/AuthLocket";
 import { getMoments } from "@/services/SupabaseServices";
 import { Calendar, Download, Eye, Heart, Sparkles, Filter, Grid, List, Film, Image as ImageIcon, Search } from "lucide-react";
-import LoadingRing from "@/components/ui/Loading/ring";
+import LoadingRing from "@/components/UI/Loading/ring";
 import { showToast } from "@/components/Toast";
 import SpotifyPlayerBanner from "@/components/common/SpotifyPlayerBanner/SpotifyPlayerBanner";
 

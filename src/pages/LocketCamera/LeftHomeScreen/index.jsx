@@ -5,7 +5,7 @@ import { useApp } from "@/context/AppContext";
 import BadgePlan from "../ExtendPage/Badge";
 import BottomStreak from "./BottomStreak";
 const StreaksCalender = lazy(() => import("./Views/StreaksCalender"));
-import LoadingRing from "@/components/ui/Loading/ring";
+import LoadingRing from "@/components/UI/Loading/ring";
 import { getPostedMoments } from "@/process/uploadQueue";
 
 const LeftHomeScreen = () => {
