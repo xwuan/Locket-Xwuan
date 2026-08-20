@@ -1,51 +1,45 @@
-import { CONFIG } from "@/config/webConfig";
-import api from "@/lib/axios";
+import { supabase } from "@/lib/supabase";
 
 export const uploadFileAndGetInfoR2 = async (
   file,
   previewType = "other",
   localId
 ) => {
-  if (!file) throw new Error("No file provided");
+  if (!file) throw new Error("Không tìm thấy tệp phương tiện để tải lên.");
 
-  const safeType = previewType.toLowerCase(); // image / video / other
+  const safeType = (previewType || "image").toLowerCase();
   const timestamp = Date.now();
-  const extension = file.name.split(".").pop(); // jpg, mp4...
+  const extension = file.name ? file.name.split(".").pop() : (safeType === "video" ? "mp4" : "jpg");
+  const fileName = `locket-xwuan_${timestamp}_${localId || "user"}.${extension}`;
+  const filePath = `uploads/${localId || "anonymous"}/${fileName}`;
 
-  const fileName = `locket-xwuan_${timestamp}_${localId}_cli${CONFIG.app.clientVersion}.${extension}`;
+  try {
+    const { data: uploadData, error: uploadError } = await supabase.storage
+      .from("moments-media")
+      .upload(filePath, file, {
+        cacheControl: "3600",
+        upsert: true,
+      });
 
-  // === Bước 1: Gọi BE để lấy Presigned URL
-  const res = await api.post(`${CONFIG.api.storage}/api/presignedV3`, {
-    filename: fileName,
-    contentType: file.type,
-    type: safeType,
-    size: file.size,
-    uploadedAt: new Date().toISOString(),
-  });
+    if (uploadError) {
+      console.error("❌ Supabase upload error:", uploadError);
+      throw new Error(uploadError.message || "Lỗi tải ảnh lên Supabase Storage");
+    }
 
-  const { url, publicURL, key, expiresIn } = res.data.data;
+    const { data } = supabase.storage.from("moments-media").getPublicUrl(filePath);
 
-  // === Bước 2: Upload file qua presigned URL
-  const uploadRes = await fetch(url, {
-    method: "PUT",
-    headers: {
-      "Content-Type": file.type,
-    },
-    body: file,
-  });
-
-  if (!uploadRes.ok) {
-    throw new Error("❌ Upload to R2 failed");
+    return {
+      downloadURL: data.publicUrl,
+      metadata: {
+        name: fileName,
+        size: file.size || 0,
+        type: file.type || (safeType === "video" ? "video/mp4" : "image/jpeg"),
+        uploadedAt: new Date().toISOString(),
+        path: filePath,
+      },
+    };
+  } catch (err) {
+    console.error("❌ Lỗi uploadFileAndGetInfoR2:", err);
+    throw err;
   }
-
-  return {
-    downloadURL: publicURL,
-    metadata: {
-      name: fileName,
-      size: file.size,
-      type: file.type,
-      uploadedAt: new Date().toISOString(),
-      path: key,
-    },
-  };
 };

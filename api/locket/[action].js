@@ -294,7 +294,54 @@ export default async function handler(req, res) {
     }
   }
 
-  // 6. Chuyển tiếp chung cho các endpoint khác
+  // 6. postMomentV2
+  if (action === "postMomentV2" || action === "post") {
+    try {
+      const { options = {}, mediaInfo = {} } = req.body || {};
+      const isVideo = mediaInfo.type === "video" || req.body?.contentType === "video";
+      const mediaUrl = mediaInfo.url || req.body?.url;
+
+      const locketPayload = {
+        data: {
+          thumbnail_url: mediaUrl,
+          image_url: mediaUrl,
+          video_url: isVideo ? mediaUrl : null,
+          caption: options.caption || "",
+          recipients: options.recipients || [],
+          overlay: options.overlay_id ? {
+            id: options.overlay_id,
+            icon: options.icon,
+            type: options.type,
+            text_color: options.text_color,
+            color_top: options.color_top,
+            color_bottom: options.color_bottom,
+          } : null,
+        },
+      };
+
+      const locketRes = await fetch(`${LOCKET_API_BASE}/postMomentV2`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          "Authorization": authHeader,
+          "X-Ios-Bundle-Identifier": IOS_BUNDLE_ID,
+          "User-Agent": "Locket/1.196.0 (iPhone; iOS 17.5.1; Scale/3.00)",
+        },
+        body: JSON.stringify(locketPayload),
+      });
+
+      const data = await locketRes.json();
+      return res.status(locketRes.status).json({
+        success: true,
+        data: data?.result || data,
+      });
+    } catch (err) {
+      console.error("postMomentV2 proxy error:", err);
+      return res.status(500).json({ error: { message: "Lỗi đăng bài lên Locket" } });
+    }
+  }
+
+  // 7. Chuyển tiếp chung cho các endpoint khác
   try {
     const locketRes = await fetch(`${LOCKET_API_BASE}/${action}`, {
       method: req.method,
