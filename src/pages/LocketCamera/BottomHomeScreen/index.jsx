@@ -4,13 +4,6 @@ import { useApp } from "@/context/AppContext";
 import { showInfo } from "@/components/Toast";
 import HeaderHistory from "./Layout/HeaderHistory";
 
-// const UploadingQueue = lazy(() => import("./MomentsView/UploadingQueue"));
-// const MomentsGrid = lazy(() => import("./MomentsView/MomentsGrid"));
-// const MomentViewer = lazy(() => import("./MomentsView/MomentViewer"));
-// const QueueViewer = lazy(() => import("./MomentsView/QueueViewer"));
-// const EmojiPicker = lazy(() => import("./Modal/EmojiStudio"));
-// const FlyingEmojiEffect = lazy(() => import("./Modal/FlyingEmojiEffect"));
-
 import UploadingQueue from "./MomentsView/UploadingQueue";
 import MomentsGrid from "./MomentsView/MomentsGrid";
 import MomentViewer from "./MomentsView/MomentViewer";

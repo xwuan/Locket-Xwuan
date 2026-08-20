@@ -1,4 +1,4 @@
-import React, { lazy } from "react";
+import React, { lazy, Suspense } from "react";
 import { useApp } from "@/context/AppContext";
 import MainHomeScreen from "./MainHomeScreen";
 import { MusicPlayer } from "./Widgets/MusicPlayer";
@@ -13,18 +13,11 @@ const CropImageStudio = lazy(() => import("./ModalViews/CropImageStudio"));
 const OptionMoment = lazy(() => import("./ModalViews/OptionMoment"));
 
 export default function LocketCameraBeta() {
-  const { navigation, camera, useloading, post } = useApp();
+  const { navigation, camera, post } = useApp();
 
   const {
-    isHomeOpen,
-    isProfileOpen,
-    isBottomOpen,
-    isFullview,
     setIsHomeOpen,
     setIsProfileOpen,
-    setIsBottomOpen,
-    setFriendsTabOpen,
-    setIsSidebarOpen,
     isOptionModalOpen,
     setOptionModalOpen,
   } = navigation;
@@ -34,18 +27,20 @@ export default function LocketCameraBeta() {
   return (
     <>
       <MainHomeScreen />
-      {/* Page Views */}
-      <LeftHomeScreen setIsProfileOpen={setIsProfileOpen} />
-      <RightHomeScreen setIsHomeOpen={setIsHomeOpen} />
-      {/* Modal Views */}
-      <FriendsContainer />
-      <CropImageStudio />
-      <ScreenCustomeStudio />
-      <EmojiPicker />
-      <OptionMoment
-        setOptionModalOpen={setOptionModalOpen}
-        isOptionModalOpen={isOptionModalOpen}
-      />
+      <Suspense fallback={null}>
+        {/* Page Views */}
+        <LeftHomeScreen setIsProfileOpen={setIsProfileOpen} />
+        <RightHomeScreen setIsHomeOpen={setIsHomeOpen} />
+        {/* Modal Views */}
+        <FriendsContainer />
+        <CropImageStudio />
+        <ScreenCustomeStudio />
+        <EmojiPicker />
+        <OptionMoment
+          setOptionModalOpen={setOptionModalOpen}
+          isOptionModalOpen={isOptionModalOpen}
+        />
+      </Suspense>
       {/* Canvas for capturing image/video */}
       <canvas ref={canvasRef} className="hidden" />
       {/* Audio Music */}

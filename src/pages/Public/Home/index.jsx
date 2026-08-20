@@ -215,7 +215,9 @@ const Home = () => {
       </section>
 
       {/* 👉 Component xin thông báo */}
-      <NotificationPrompt />
+      <Suspense fallback={null}>
+        <NotificationPrompt />
+      </Suspense>
     </div>
   );
 };

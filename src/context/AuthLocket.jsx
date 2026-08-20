@@ -71,9 +71,15 @@ export const AuthProvider = ({ children }) => {
   // Mặc định luôn là gói VIP không giới hạn
   const [userPlan, setUserPlan] = useState(DEFAULT_VIP_PLAN);
   const [uploadStats, setUploadStats] = useState(DEFAULT_VIP_PLAN.upload_stats);
-  const [streak, setStreak] = useState(() =>
-    JSON.parse(localStorage.getItem("streak") || "null")
-  );
+  const [streak, setStreak] = useState(() => {
+    try {
+      const saved = localStorage.getItem("streak");
+      if (!saved || saved === "undefined" || saved === "null") return null;
+      return JSON.parse(saved);
+    } catch (e) {
+      return null;
+    }
+  });
 
   const { loadFriends } = useFriendStore();
 

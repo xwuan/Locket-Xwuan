@@ -22,7 +22,9 @@ function StreakLocket({ recentPosts }) {
           Số Locket là số bài đăng trên web khác với thực tế.
         </p>
 
-        <StreaksCalender recentPosts={recentPosts} />
+        <React.Suspense fallback={null}>
+          <StreaksCalender recentPosts={recentPosts} />
+        </React.Suspense>
         <BottomStreak recentPosts={recentPosts} />
       </div>
     </>

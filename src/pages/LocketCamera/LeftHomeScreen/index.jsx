@@ -107,7 +107,9 @@ const LeftHomeScreen = () => {
         <p className="mb-5">
           Số Locket là số bài đăng trên web khác với thực tế
         </p>
-        <StreaksCalender recentPosts={recentPosts} />
+        <Suspense fallback={null}>
+          <StreaksCalender recentPosts={recentPosts} />
+        </Suspense>
         <BottomStreak recentPosts={recentPosts} />
       </div>
     </div>

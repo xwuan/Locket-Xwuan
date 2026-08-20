@@ -61,7 +61,9 @@ export default function MainHomeScreen() {
         >
           <div className="w-full h-full overflow-y-auto">
             <div className="h-16" />
-            <BottomHomeScreen />
+            <React.Suspense fallback={null}>
+              <BottomHomeScreen />
+            </React.Suspense>
           </div>
           {/* Click để đóng lịch sử */}
           <BottomMenu

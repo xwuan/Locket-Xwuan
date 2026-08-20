@@ -5,9 +5,29 @@ export const validateEmail = (email) => {
 
 const USER_KEY = "userData";
 
-export const saveUser = (user) => localStorage.setItem(USER_KEY, JSON.stringify(user));
-export const getUser = () => JSON.parse(localStorage.getItem(USER_KEY)) || null;
-export const removeUser = () => localStorage.removeItem(USER_KEY);
+export const saveUser = (user) => {
+  try {
+    localStorage.setItem(USER_KEY, JSON.stringify(user));
+  } catch (e) {
+    console.warn("Cannot save user to localStorage:", e);
+  }
+};
+
+export const getUser = () => {
+  try {
+    const data = localStorage.getItem(USER_KEY);
+    if (!data || data === "undefined" || data === "null") return null;
+    return JSON.parse(data);
+  } catch (e) {
+    return null;
+  }
+};
+
+export const removeUser = () => {
+  try {
+    localStorage.removeItem(USER_KEY);
+  } catch (e) {}
+};
 
 const TOKEN_KEY = "idToken";
 const LOCAL_ID_KEY = "localId";
