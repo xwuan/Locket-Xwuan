@@ -2,16 +2,16 @@
 
 export const CONFIG = {
   api: {
-    baseUrl: import.meta.env.VITE_BASE_API_URL, // API chính
-    storage: import.meta.env.VITE_STORAGE_API_URL, // API lưu trữ file
-    data: import.meta.env.VITE_DATA_API_URL, // API data local
-    payment: import.meta.env.VITE_PAYMENT_API_URL, // API thanh toán
-    cdnUrl: import.meta.env.VITE_CDN_URL, // API cdn
-    chatServer: import.meta.env.VITE_CHAT_SERVER_URL, // server realtime chat (socket + API)
-    locketApi: import.meta.env.VITE_LOCKET_API_URL, // API Locket chính thức
-    exportApi: import.meta.env.VITE_EXPORTS_API_URL, // API export data pdf, excel,...
-    convertApi: import.meta.env.VITE_CONVERTS_API_URL,
-    extenApi: import.meta.env.VITE_EXTENS_API_URL,
+    baseUrl: import.meta.env.VITE_BASE_API_URL || "", // API chính
+    storage: import.meta.env.VITE_STORAGE_API_URL || "", // API lưu trữ file
+    data: import.meta.env.VITE_DATA_API_URL || "", // API data local
+    payment: import.meta.env.VITE_PAYMENT_API_URL || "", // API thanh toán
+    cdnUrl: import.meta.env.VITE_CDN_URL || "", // API cdn
+    chatServer: import.meta.env.VITE_CHAT_SERVER_URL || "", // server realtime chat
+    locketApi: import.meta.env.VITE_LOCKET_API_URL || "https://api.locketcamera.com", // API Locket chính thức
+    exportApi: import.meta.env.VITE_EXPORTS_API_URL || "",
+    convertApi: import.meta.env.VITE_CONVERTS_API_URL || "",
+    extenApi: import.meta.env.VITE_EXTENS_API_URL || "",
   },
 
   keys: {
