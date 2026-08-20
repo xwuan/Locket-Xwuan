@@ -10,6 +10,7 @@ import { initAppIcon } from '@/utils/appIconUtils';
 initAppIcon();
 
 const updateSW = registerSW({
+  immediate: true,
   onNeedRefresh() {
     console.log("🔄 Có bản mới, đang cập nhật...");
     updateSW(true); // ✅ Gọi để skipWaiting và reload

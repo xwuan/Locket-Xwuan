@@ -63,6 +63,13 @@ export default function AppIconPicker() {
               src={currentIcon.file}
               alt={currentIcon.name}
               className="w-16 h-16 rounded-2xl shadow-xl object-cover ring-2 ring-amber-400 transform hover:scale-105 transition-transform"
+              draggable="false"
+              onError={(e) => {
+                if (!e.currentTarget.dataset.retried) {
+                  e.currentTarget.dataset.retried = "1";
+                  e.currentTarget.src = `${currentIcon.file}?v=${Date.now()}`;
+                }
+              }}
             />
             <div className="absolute -bottom-1 -right-1 bg-amber-500 text-white rounded-full p-0.5 shadow-md">
               <Check className="w-3.5 h-3.5" />
@@ -136,7 +143,13 @@ export default function AppIconPicker() {
                   src={icon.file}
                   alt={icon.name}
                   className="w-full h-full object-cover"
-                  loading="lazy"
+                  draggable="false"
+                  onError={(e) => {
+                    if (!e.currentTarget.dataset.retried) {
+                      e.currentTarget.dataset.retried = "1";
+                      e.currentTarget.src = `${icon.file}?v=${Date.now()}`;
+                    }
+                  }}
                 />
               </div>
 
