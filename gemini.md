@@ -28,11 +28,11 @@ Tài liệu này định nghĩa các **quy tắc cốt lõi, tiêu chuẩn phát
 * **Lý do**: Máy tính người dùng sử dụng Git Bash với **nhiều tài khoản GitHub khác nhau**, do đó để tránh xung đột SSH / Credential / Remote:
 * 👉 **BẮT BUỘC** mọi lệnh `git push` hoặc thao tác liên quan tới Remote PHẢI **kèm đích danh URL**:
   ```bash
-  # Cấu hình remote origin chuẩn
-  git remote set-url origin https://github.com/xwuan/Locket-Xwuan.git
+  # Cấu hình remote origin chuẩn có username để Git Credential Manager chọn đúng tài khoản xwuan:
+  git remote set-url origin https://xwuan@github.com/xwuan/Locket-Xwuan.git
 
   # Lệnh push tường minh kèm URL trực tiếp:
-  git push https://github.com/xwuan/Locket-Xwuan.git main
+  git push https://xwuan@github.com/xwuan/Locket-Xwuan.git main
   # hoặc:
   git push origin main
   ```
