@@ -2,26 +2,18 @@ import { defineConfig } from "vite";
 import react from "@vitejs/plugin-react-swc";
 import tailwindcss from "@tailwindcss/vite";
 import path from "path";
-import { visualizer } from "rollup-plugin-visualizer";
 import { VitePWA } from "vite-plugin-pwa";
 
 const manifestForPlugIn = {
-  // ✅ Dùng đúng chiến lược cập nhật SW
   strategies: "injectManifest",
   srcDir: "src",
   filename: "sw.js",
-
-  // ✅ Auto inject code register SW
   injectRegister: "auto",
   injectManifest: {
-    maximumFileSizeToCacheInBytes: 0, // ✅ TẮT HOÀN TOÀN cache tự động
+    maximumFileSizeToCacheInBytes: 5000000, // 5MB
   },
-
-  // ✅ Tự kiểm tra và cập nhật SW khi có bản mới
   registerType: "autoUpdate",
-
   includeAssets: ["favicon.ico", "apple-touch-icon.png", "maskable-icon-512x512.png"],
-
   manifest: {
     name: "Locket Xwuan",
     short_name: "Locket Xwuan",
@@ -64,10 +56,14 @@ export default defineConfig({
   server: {
     host: true,
   },
-  plugins: [tailwindcss(), react(), VitePWA(manifestForPlugIn), visualizer()],
+  plugins: [
+    tailwindcss(),
+    react(),
+    VitePWA(manifestForPlugIn),
+  ],
   resolve: {
     alias: {
-      "@": path.resolve(__dirname, "src"), // alias @ trỏ vào thư mục src
+      "@": path.resolve(__dirname, "src"),
     },
   },
   build: {
@@ -77,10 +73,10 @@ export default defineConfig({
           react: ["react", "react-dom"],
           ui: ["lucide-react", "sonner", "react-icons", "react-toastify", "react-fast-marquee", "swiper"],
           crop: ["react-easy-crop"],
-          vendor: ["axios", "zustand", "dexie"]
+          vendor: ["axios", "zustand", "dexie"],
         },
       },
     },
-    chunkSizeWarningLimit: 1500, // tăng giới hạn warning, đỡ spam console
+    chunkSizeWarningLimit: 2000,
   },
 });
