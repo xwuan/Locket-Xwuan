@@ -3,7 +3,6 @@ import Home from "../pages/Public/Home";
 import Login from "../pages/Public/Login";
 import { CONFIG } from "@/config";
 
-const LocketCameraBeta = React.lazy(() => import("../pages/LocketCameraBeta"));
 const NewsPage = React.lazy(() => import("@/pages/Public/NewsPage"));
 const NewsDetailPage = React.lazy(() => import("@/pages/Public/NewsDetailPage"));
 const ForgotPassword = React.lazy(() => import("@/pages/Public/ForgotPassword"));
@@ -48,8 +47,6 @@ export const publicRoutes = [
   { path: "/docs", component: Docs, title: `Tài liệu | ${APP_NAME}` },
   { path: "/sponsors", component: DonatePage, title: `Ủng hộ dự án | ${APP_NAME}` },
   { path: "/collection", component: CollectionPage, title: `Thư viện phiên bản | ${APP_NAME}` },
-  { path: "/locket-beta", component: LocketCameraBeta, title: `Locket Camera | ${APP_NAME}` },
-
   { path: "/privacy", component: PrivacyPolicy, title: `Chính sách riêng tư | ${APP_NAME}` },
   { path: "/terms", component: TermsPage, title: `Điều khoản sử dụng | ${APP_NAME}` },
   { path: "/pricing", component: PricingPage, title: `Đăng ký gói thành viên | ${APP_NAME}` },
