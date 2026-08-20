@@ -17,35 +17,35 @@ export const OFFICIAL_LOCKET_ICONS = [
     name: "Gold on Black",
     category: "gold",
     tag: "Locket Gold",
-    file: "/app-icons/gold_on_black76x76@2x~ipad.png",
+    file: "/app-icons/gold_on_black.png",
   },
   {
     id: "black_on_gold",
     name: "Black on Gold",
     category: "gold",
     tag: "Locket Gold",
-    file: "/app-icons/black_on_gold76x76@2x~ipad.png",
+    file: "/app-icons/black_on_gold.png",
   },
   {
     id: "gold_on_black_outline",
     name: "Gold Outline",
     category: "gold",
     tag: "Locket Gold",
-    file: "/app-icons/gold_on_black_outline76x76@2x~ipad.png",
+    file: "/app-icons/gold_on_black_outline.png",
   },
   {
     id: "app_icon",
     name: "Locket Classic",
     category: "gold",
     tag: "Nguyên bản",
-    file: "/app-icons/app_icon76x76@2x~ipad.png",
+    file: "/app-icons/app_icon.png",
   },
   {
     id: "app_icon_beta",
     name: "Locket Beta",
     category: "gold",
     tag: "Beta Edition",
-    file: "/app-icons/app_icon_beta76x76@2x~ipad.png",
+    file: "/app-icons/app_icon_beta.png",
   },
 
   // 2. 3D Pastel & Pendant
@@ -54,35 +54,35 @@ export const OFFICIAL_LOCKET_ICONS = [
     name: "Gold Pendant",
     category: "3d",
     tag: "Mặt dây chuyền",
-    file: "/app-icons/pendant76x76@2x~ipad.png",
+    file: "/app-icons/pendant.png",
   },
   {
     id: "pastel_3d_gold",
     name: "3D Pastel Gold",
     category: "3d",
     tag: "3D Pastel",
-    file: "/app-icons/pastel_3d_gold76x76@2x~ipad.png",
+    file: "/app-icons/pastel_3d_gold.png",
   },
   {
     id: "pastel_3d_pink",
     name: "3D Pastel Pink",
     category: "3d",
     tag: "3D Pastel",
-    file: "/app-icons/pastel_3d_pink76x76@2x~ipad.png",
+    file: "/app-icons/pastel_3d_pink.png",
   },
   {
     id: "pastel_3d_blue",
     name: "3D Pastel Blue",
     category: "3d",
     tag: "3D Pastel",
-    file: "/app-icons/pastel_3d_blue76x76@2x~ipad.png",
+    file: "/app-icons/pastel_3d_blue.png",
   },
   {
     id: "pastel_3d_green",
     name: "3D Pastel Green",
     category: "3d",
     tag: "3D Pastel",
-    file: "/app-icons/pastel_3d_green76x76@2x~ipad.png",
+    file: "/app-icons/pastel_3d_green.png",
   },
 
   // 3. Đá Quý Gem
@@ -91,28 +91,28 @@ export const OFFICIAL_LOCKET_ICONS = [
     name: "Gem Candy",
     category: "gem",
     tag: "Crystal Gem",
-    file: "/app-icons/gem_bg_candy76x76@2x~ipad.png",
+    file: "/app-icons/gem_bg_candy.png",
   },
   {
     id: "gem_bg_multi",
     name: "Gem Rainbow",
     category: "gem",
     tag: "Crystal Gem",
-    file: "/app-icons/gem_bg_multi76x76@2x~ipad.png",
+    file: "/app-icons/gem_bg_multi.png",
   },
   {
     id: "gem_bg_pink",
     name: "Gem Pink",
     category: "gem",
     tag: "Crystal Gem",
-    file: "/app-icons/gem_bg_pink76x76@2x~ipad.png",
+    file: "/app-icons/gem_bg_pink.png",
   },
   {
     id: "gem_bg_mono",
     name: "Gem Monochrome",
     category: "gem",
     tag: "Crystal Gem",
-    file: "/app-icons/gem_bg_mono76x76@2x~ipad.png",
+    file: "/app-icons/gem_bg_mono.png",
   },
 
   // 4. Neon Dạ Quang
@@ -121,28 +121,28 @@ export const OFFICIAL_LOCKET_ICONS = [
     name: "Neon Yellow",
     category: "neon",
     tag: "Glow Neon",
-    file: "/app-icons/neon_yellow76x76@2x~ipad.png",
+    file: "/app-icons/neon_yellow.png",
   },
   {
     id: "neon_pink",
     name: "Neon Pink",
     category: "neon",
     tag: "Glow Neon",
-    file: "/app-icons/neon_pink76x76@2x~ipad.png",
+    file: "/app-icons/neon_pink.png",
   },
   {
     id: "neon_blue",
     name: "Neon Blue",
     category: "neon",
     tag: "Glow Neon",
-    file: "/app-icons/neon_blue76x76@2x~ipad.png",
+    file: "/app-icons/neon_blue.png",
   },
   {
     id: "neon_green",
     name: "Neon Green",
     category: "neon",
     tag: "Glow Neon",
-    file: "/app-icons/neon_green76x76@2x~ipad.png",
+    file: "/app-icons/neon_green.png",
   },
 
   // 5. Waves & 3D Tunnel
@@ -151,42 +151,42 @@ export const OFFICIAL_LOCKET_ICONS = [
     name: "Waves Gold",
     category: "waves",
     tag: "Abstract Wave",
-    file: "/app-icons/waves_gold76x76@2x~ipad.png",
+    file: "/app-icons/waves_gold.png",
   },
   {
     id: "waves_black",
     name: "Waves Black",
     category: "waves",
     tag: "Abstract Wave",
-    file: "/app-icons/waves_black76x76@2x~ipad.png",
+    file: "/app-icons/waves_black.png",
   },
   {
     id: "waves_blue",
     name: "Waves Blue",
     category: "waves",
     tag: "Abstract Wave",
-    file: "/app-icons/waves_blue76x76@2x~ipad.png",
+    file: "/app-icons/waves_blue.png",
   },
   {
     id: "waves_purple",
     name: "Waves Purple",
     category: "waves",
     tag: "Abstract Wave",
-    file: "/app-icons/waves_purple76x76@2x~ipad.png",
+    file: "/app-icons/waves_purple.png",
   },
   {
     id: "tunnel",
     name: "3D Tunnel",
     category: "waves",
     tag: "3D Warp",
-    file: "/app-icons/tunnel76x76@2x~ipad.png",
+    file: "/app-icons/tunnel.png",
   },
   {
     id: "notebook",
     name: "Notebook Sketch",
     category: "waves",
     tag: "Hand Drawn",
-    file: "/app-icons/notebook76x76@2x~ipad.png",
+    file: "/app-icons/notebook.png",
   },
 
   // 6. Hoa & Trái Tim
@@ -195,49 +195,49 @@ export const OFFICIAL_LOCKET_ICONS = [
     name: "Flowers Pink",
     category: "flowers",
     tag: "Floral Heart",
-    file: "/app-icons/flowers_pink76x76@2x~ipad.png",
+    file: "/app-icons/flowers_pink.png",
   },
   {
     id: "flowers_magenta",
     name: "Flowers Magenta",
     category: "flowers",
     tag: "Floral Heart",
-    file: "/app-icons/flowers_magenta76x76@2x~ipad.png",
+    file: "/app-icons/flowers_magenta.png",
   },
   {
     id: "flowers_beige",
     name: "Flowers Beige",
     category: "flowers",
     tag: "Floral Heart",
-    file: "/app-icons/flowers_beige76x76@2x~ipad.png",
+    file: "/app-icons/flowers_beige.png",
   },
   {
     id: "flowers_autumn",
     name: "Flowers Autumn",
     category: "flowers",
     tag: "Floral Heart",
-    file: "/app-icons/flowers_autumn76x76@2x~ipad.png",
+    file: "/app-icons/flowers_autumn.png",
   },
   {
     id: "light_hearts",
     name: "Light Hearts",
     category: "flowers",
     tag: "Floating Hearts",
-    file: "/app-icons/light_hearts76x76@2x~ipad.png",
+    file: "/app-icons/light_hearts.png",
   },
   {
     id: "photos_hearts",
     name: "Photo Hearts",
     category: "flowers",
     tag: "Polaroid Hearts",
-    file: "/app-icons/photos_hearts76x76@2x~ipad.png",
+    file: "/app-icons/photos_hearts.png",
   },
   {
     id: "photos_hearts_black",
     name: "Hearts Black",
     category: "flowers",
     tag: "Polaroid Hearts",
-    file: "/app-icons/photos_hearts_black76x76@2x~ipad.png",
+    file: "/app-icons/photos_hearts_black.png",
   },
 
   // 7. Màu Tối Giản Flat
@@ -246,28 +246,28 @@ export const OFFICIAL_LOCKET_ICONS = [
     name: "Flat Yellow Gold",
     category: "flat",
     tag: "Minimal Flat",
-    file: "/app-icons/flat_yellow76x76@2x~ipad.png",
+    file: "/app-icons/flat_yellow.png",
   },
   {
     id: "flat_pink",
     name: "Flat Pink",
     category: "flat",
     tag: "Minimal Flat",
-    file: "/app-icons/flat_pink76x76@2x~ipad.png",
+    file: "/app-icons/flat_pink.png",
   },
   {
     id: "flat_purple",
     name: "Flat Purple",
     category: "flat",
     tag: "Minimal Flat",
-    file: "/app-icons/flat_purple76x76@2x~ipad.png",
+    file: "/app-icons/flat_purple.png",
   },
   {
     id: "flat_blue",
     name: "Flat Blue",
     category: "flat",
     tag: "Minimal Flat",
-    file: "/app-icons/flat_blue76x76@2x~ipad.png",
+    file: "/app-icons/flat_blue.png",
   },
 ];
 
@@ -294,7 +294,9 @@ export function applyAppIcon(iconId) {
   }
 
   // 3. Lưu vào localStorage
-  localStorage.setItem("app_selected_icon", iconId);
+  try {
+    localStorage.setItem("app_selected_icon", iconId);
+  } catch (e) {}
   return iconConfig;
 }
 
@@ -302,6 +304,9 @@ export function applyAppIcon(iconId) {
  * Khởi tạo icon từ localStorage khi trang load
  */
 export function initAppIcon() {
-  const savedIconId = localStorage.getItem("app_selected_icon") || "gold_on_black";
+  let savedIconId = "gold_on_black";
+  try {
+    savedIconId = localStorage.getItem("app_selected_icon") || "gold_on_black";
+  } catch (e) {}
   return applyAppIcon(savedIconId);
 }
