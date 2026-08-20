@@ -1,55 +1,51 @@
-console.log("[SW] Locket Xwuan SW v2.2.7.3636.555.4-6.3 - loaded");
-import { precacheAndRoute, cleanupOutdatedCaches } from "workbox-precaching";
+import { precacheAndRoute, cleanupOutdatedCaches, createHandlerBoundToURL } from "workbox-precaching";
 import { registerRoute, NavigationRoute } from "workbox-routing";
-import { createHandlerBoundToURL } from "workbox-precaching";
-
 import { CacheFirst } from "workbox-strategies";
 import { ExpirationPlugin } from "workbox-expiration";
 
+// Service Worker for Locket Xwuan
 self.addEventListener("message", (event) => {
   if (event.data && event.data.type === "SKIP_WAITING") self.skipWaiting();
 });
-self.addEventListener("install", (event) => {
-  self.skipWaiting(); // Cập nhật ngay
+
+self.addEventListener("install", () => {
+  self.skipWaiting();
 });
+
 self.addEventListener("activate", (event) => {
   event.waitUntil(clients.claim());
 });
 
-// Precache và cleanup
+// Precache and cleanup
 precacheAndRoute(self.__WB_MANIFEST || []);
-console.log("[SW] started precache");
 cleanupOutdatedCaches();
 
-// Điều hướng fallback cho SPA
+// SPA Navigation fallback
 registerRoute(new NavigationRoute(createHandlerBoundToURL("index.html")));
+
+// Cache fonts
 registerRoute(
-  ({ url, request }) =>
-    url.origin === "https://cdn.locket-xwuan.com" &&
-    request.destination === "font" &&
-    url.pathname.startsWith("/v1/fonts/"),
+  ({ request }) => request.destination === "font",
   new CacheFirst({
     cacheName: "xwuan-fonts-v1",
     plugins: [
       new ExpirationPlugin({
-        maxEntries: 20,
+        maxEntries: 30,
         maxAgeSeconds: 365 * 24 * 60 * 60,
       }),
     ],
   })
 );
 
+// Cache static images
 registerRoute(
-  ({ url, request }) =>
-    url.origin === "https://cdn.locket-xwuan.com" &&
-    request.destination === "image" &&
-    url.pathname.startsWith("/v1/images/"),
+  ({ request }) => request.destination === "image",
   new CacheFirst({
     cacheName: "xwuan-images-v1",
     plugins: [
       new ExpirationPlugin({
-        maxEntries: 300,
-        maxAgeSeconds: 7 * 24 * 60 * 60,
+        maxEntries: 200,
+        maxAgeSeconds: 30 * 24 * 60 * 60,
       }),
     ],
   })
@@ -58,12 +54,12 @@ registerRoute(
 // Push Notification handler
 self.addEventListener("push", (event) => {
   const data = event.data?.json() || {};
-  const notificationTitle = data.title || "🔔 Thông báo";
+  const notificationTitle = data.title || "🔔 Thông báo Locket Xwuan";
   const notificationOptions = {
-    body: data.body || "Bạn có thông báo mới!",
-    data: { url: data.url || "https://locket-xwuan.com" }, // truyền URL để redirect khi click
+    body: data.body || "Bạn có khoảnh khắc mới!",
+    data: { url: data.url || "/" },
     icon: "/android-chrome-192x192.png",
-    badge: "/maskable_icon.png",
+    badge: "/maskable-icon-512x512.png",
   };
 
   event.waitUntil(
@@ -71,11 +67,11 @@ self.addEventListener("push", (event) => {
   );
 });
 
-// Click handler: mở tab hoặc focus vào web
+// Notification click handler
 self.addEventListener("notificationclick", (event) => {
   event.notification.close();
 
-  const urlToOpen = event.notification.data?.url || "https://locket-xwuan.com";
+  const urlToOpen = event.notification.data?.url || "/";
 
   event.waitUntil(
     clients
