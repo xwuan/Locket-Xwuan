@@ -4,7 +4,11 @@
   "framework": "vite",
   "rewrites": [
     {
-      "source": "/((?!assets/|app-icons/|locket-icons/|images/|icons/|fonts/|svg/|.*\\..*).*)",
+      "source": "/locket/(.*)",
+      "destination": "/api/locket/$1"
+    },
+    {
+      "source": "/((?!api/|locket/|assets/|app-icons/|locket-icons/|images/|icons/|fonts/|svg/|.*\\..*).*)",
       "destination": "/index.html"
     }
   ],
