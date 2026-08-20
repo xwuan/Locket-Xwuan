@@ -183,17 +183,30 @@
   - Đã kiểm tra và xác thực 100% 7 bảng Database (`profiles`, `moments`, `moment_reactions`, `friends`, `messages`, `rollcalls`, `custom_captions`) đều hoạt động hoàn hảo.
   - Sẵn sàng đồng bộ dữ liệu người dùng, lưu trữ khoảnh khắc và nhắn tin Realtime.
 
+### 🔹 Giai đoạn 14: Chuẩn Hóa Triển Khai Vercel & Tối Ưu Render Ứng Dụng
+- **Khắc phục lỗi Case-Sensitive trên Linux/Vercel**:
+  - Quét và chuẩn hóa toàn bộ 73+ file import `@/components/ui/` thành `@/components/UI/`.
+  - Thiết lập Alias kép `@/components/ui` và `@/components/UI` trong `vite.config.js`.
+  - Đổi tên thư mục `MainhomeScreen` thành `MainHomeScreen` chuẩn hóa 100%.
+- **Chuyển đổi PWA sang Workbox generateSW tiêu chuẩn**:
+  - Chuyển `strategies: "generateSW"` trong `VitePWA` để tự sinh Service Worker độc lập không lỗi thiếu module.
+- **Khắc phục Render & Suspense React**:
+  - Bọc toàn bộ các `React.lazy()` component bằng `<Suspense fallback={null}>` (bao gồm `NotificationPrompt`, `StreaksCalender`, `BottomHomeScreen`, v.v.).
+  - Bọc try-catch an toàn tuyệt đối cho các hàm phân tích dữ liệu `JSON.parse` từ `localStorage` (`getUser`, `streak`).
+  - Loại bỏ màu chữ trắng cố định trong `:root` của `src/index.css` để DaisyUI điều khiển màu sắc chính xác.
+  - Tích hợp `ErrorBoundary` với giao diện màu tối độ tương phản cao, tự động khôi phục dữ liệu.
+
 ---
 
 ## 🎯 3. Trạng Thái & Độ Ổn Định Hiện Tại
 - **Trạng thái Build**: Đã chạy kiểm tra `npm run build` đạt kết quả `exit code 0` (0 lỗi).
-- **Service Worker PWA**: Đã tạo bundle `dist/sw.js` hoàn chỉnh.
-- **Mã nguồn**: Đang được lưu trữ đầy đủ tại thư mục cục bộ của máy:
-  `D:\Work\Client-Locket-Xwuan-main`
+- **Service Worker PWA**: Đã tạo bundle `dist/sw.js` và `dist/workbox-*.js` hoàn chỉnh.
+- **Triển khai Cloud**: Đã đồng bộ mã nguồn lên GitHub `https://github.com/xwuan/Locket-Xwuan.git` (nhánh `main`).
+- **Mã nguồn cục bộ**: `D:\Work\Client-Locket-Xwuan-main`
 
 ---
 
 ## 📌 4. Checklist & Kế hoạch phát triển tiếp theo
+- [x] Triển khai thành công lên Vercel + Supabase.
 - [ ] Tinh chỉnh giao diện cá nhân hóa theo sở thích của bạn (giao diện dark mode, font chữ, layout camera).
 - [ ] Tối ưu hóa bộ nhớ đệm Offline IndexedDB để xem lại moments mượt mà ngay cả khi không có mạng.
-- [ ] Triển khai lên Vercel + Supabase theo tài liệu [DEPLOY_VERCEL_SUPABASE.md](file:///D:/Work/Client-Locket-Xwuan-main/DEPLOY_VERCEL_SUPABASE.md).
