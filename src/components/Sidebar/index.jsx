@@ -26,6 +26,7 @@ import {
   Sparkles,
   UploadCloud,
   Scale,
+  MessageSquare,
 } from "lucide-react";
 import * as ultils from "@/utils";
 import { useApp } from "@/context/AppContext";

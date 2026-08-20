@@ -12,6 +12,7 @@ import {
   Palette,
   Pencil,
   FileImage,
+  Sparkles,
 } from "lucide-react";
 import { showError, showToast } from "@/components/Toast/index.jsx";
 import * as utils from "@/utils";
