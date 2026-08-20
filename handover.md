@@ -172,8 +172,16 @@
 ### 🔹 Giai đoạn 12: Khởi Tạo Git & Đẩy Mã Nguồn Lên GitHub
 - **Khởi tạo và đẩy mã nguồn**:
   - Khởi tạo local git repository và nhánh chính `main`.
-  - Kết nối Remote URL: `https://github.com/xwuan/Locket-Xwuan.git`.
+  - Kết nối Remote URL: `https://github.com/xwuan/Locket-Xwuan.git` (định danh `xwuan@`).
   - Đẩy toàn bộ mã nguồn sạch sẽ và tài liệu lên GitHub với lệnh kèm URL trực tiếp.
+
+### 🔹 Giai đoạn 13: Tích Hợp & Kết Nối Thành Công Supabase Database
+- **Cấu hình biến môi trường (`.env`)**:
+  - `VITE_SUPABASE_URL`: `https://bzngrspsbogbolkiixty.supabase.co`
+  - `VITE_SUPABASE_ANON_KEY`: `sb_publishable_CoProMkaKm_mFTw9n8JGBg_ygyZJ4WH`
+- **Xác thực kết nối**:
+  - Đã kiểm tra và xác thực 100% 7 bảng Database (`profiles`, `moments`, `moment_reactions`, `friends`, `messages`, `rollcalls`, `custom_captions`) đều hoạt động hoàn hảo.
+  - Sẵn sàng đồng bộ dữ liệu người dùng, lưu trữ khoảnh khắc và nhắn tin Realtime.
 
 ---
 
