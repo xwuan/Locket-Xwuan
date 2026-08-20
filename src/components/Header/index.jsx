@@ -20,6 +20,9 @@ const Header = () => {
             alt="Locket icon"
             className="w-7 h-7 object-contain -ml-1 disable-select"
             draggable="false"
+            onError={(e) => {
+              e.currentTarget.style.display = "none";
+            }}
           />
         </Link>
 
