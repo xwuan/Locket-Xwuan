@@ -18,21 +18,25 @@ import NotFoundPage from "./components/pages/NotFoundPage";
 import { Toaster } from "sonner";
 import { SocketProvider } from "./context/SocketContext";
 
+import ErrorBoundary from "./components/common/ErrorBoundary";
+
 function App() {
   return (
-    <ThemeProvider>
-      <AuthProvider>
-        <SocketProvider>
-          <AppProvider>
-            <Router>
-              <AppContent />
-            </Router>
-            <ToastProvider />
-            <Toaster />
-          </AppProvider>
-        </SocketProvider>
-      </AuthProvider>
-    </ThemeProvider>
+    <ErrorBoundary>
+      <ThemeProvider>
+        <AuthProvider>
+          <SocketProvider>
+            <AppProvider>
+              <Router>
+                <AppContent />
+              </Router>
+              <ToastProvider />
+              <Toaster />
+            </AppProvider>
+          </SocketProvider>
+        </AuthProvider>
+      </ThemeProvider>
+    </ErrorBoundary>
   );
 }
 
