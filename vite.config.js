@@ -51,17 +51,21 @@ export default defineConfig({
         ],
       },
       workbox: {
+        cleanupOutdatedCaches: true,
         globPatterns: ["**/*.{js,css,html,ico,png,svg,webp,json}"],
         maximumFileSizeToCacheInBytes: 5000000,
         runtimeCaching: [
           {
             urlPattern: ({ request }) => request.destination === "image",
-            handler: "CacheFirst",
+            handler: "StaleWhileRevalidate",
             options: {
-              cacheName: "images-cache",
+              cacheName: "images-cache-v2",
               expiration: {
-                maxEntries: 100,
-                maxAgeSeconds: 30 * 24 * 60 * 60,
+                maxEntries: 200,
+                maxAgeSeconds: 7 * 24 * 60 * 60,
+              },
+              cacheableResponse: {
+                statuses: [0, 200],
               },
             },
           },

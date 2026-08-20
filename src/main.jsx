@@ -9,6 +9,17 @@ import { initAppIcon } from '@/utils/appIconUtils';
 // Khởi tạo icon đã chọn
 initAppIcon();
 
+// Dọn dẹp cache ảnh cũ bị lỗi nếu có
+if (typeof window !== "undefined" && "caches" in window) {
+  caches.keys().then((keys) => {
+    keys.forEach((key) => {
+      if (key === "images-cache") {
+        caches.delete(key);
+      }
+    });
+  });
+}
+
 const updateSW = registerSW({
   immediate: true,
   onNeedRefresh() {
