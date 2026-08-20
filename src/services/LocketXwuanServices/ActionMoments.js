@@ -19,23 +19,25 @@ export const GetAllMoments = async ({ timestamp = null, friendId = null, limit =
   }
 };
 
-export const SendReactMoment = async (emoji, selectedMomentId, power) => {
+export const SendReactMoment = async (emoji, selectedMomentId, power, ownerUid) => {
   try {
     const { localId } = getToken();
+    const infoMoment = await getMomentById(selectedMomentId);
 
     const body = {
       data: {
         intensity: power || 0,
         moment_uid: selectedMomentId,
         reaction: emoji || "💛",
-        owner_uid: localId,
+        owner_uid: ownerUid || infoMoment?.user || localId,
       },
     };
     const response = await instanceLocketV2.post("reactToMoment", body);
 
-    return response.data;
+    return response?.data;
   } catch (err) {
     console.warn("❌ React Failed", err);
+    throw err;
   }
 };
 

@@ -58,7 +58,7 @@ const InputForMoment = () => {
       setIsSendingReaction(true);
       setFlyingEmojis(emoji);
       setShowFlyingEffect(true);
-      const res = await SendReactMoment(emoji, selectedMomentId, power);
+      const res = await SendReactMoment(emoji, selectedMomentId, power, momentUser);
       SonnerSuccess(`Gửi cảm xúc thành công!`);
       setShowEmojiPicker(false);
     } catch (error) {
