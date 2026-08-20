@@ -2,7 +2,7 @@
 
 > **Mục tiêu dự án**: Ứng dụng web/PWA Locket cá nhân độc lập (Personal Private Edition) dành riêng cho 1 người dùng, định hướng mở rộng linh hoạt cho nhóm nhỏ 5-10 người dùng trong tương lai.
 > **GitHub Repository**: [https://github.com/xwuan/Locket-Xwuan](https://github.com/xwuan/Locket-Xwuan)
-> **Trạng thái hiện tại**: Đã kết nối với GitHub repository chính thức, sẵn sàng triển khai tiếp Supabase & Vercel.
+> **Trạng thái dự án**: Đã đóng gói, lưu trữ an toàn toàn bộ mã nguồn, cấu hình và tài liệu trên GitHub Repository chính thức.
 
 ---
 
@@ -14,8 +14,9 @@
 | **Styling & Theme** | Tailwind CSS v4 + DaisyUI v5 | Giao diện hiện đại, hỗ trợ 30+ theme linh hoạt |
 | **Quản lý State** | Zustand v5 + React Context | Quản lý state toàn cục cho Moments, Chat, Friends, Camera, Auth |
 | **Local Cache & Storage** | Dexie (IndexedDB) | Lưu trữ cục bộ moments, bạn bè, tin nhắn ngay trên trình duyệt |
-| **Backend & Database** | Supabase JS Client (`@supabase/supabase-js`) | Sẵn sàng tích hợp Supabase Database, Auth, Storage, Realtime |
-| **PWA & Service Worker** | `vite-plugin-pwa` + `sw.js` | Hỗ trợ cài đặt vào màn hình chính (A2HS) trên iOS/Android |
+| **Backend & Storage** | Supabase JS Client (`@supabase/supabase-js`) | Tích hợp Supabase Database, Storage (`moments-media`), Realtime |
+| **Serverless API Proxy** | Vercel Serverless Functions (`/api/locket/*`) | Proxy giao tiếp trực tiếp với Locket Camera API & Firestore DB |
+| **PWA & Service Worker** | `vite-plugin-pwa` + Workbox | Hỗ trợ cài đặt vào màn hình chính (A2HS) trên iOS/Android |
 | **Xử lý Media** | `react-easy-crop` + HTML5 Canvas API | Chụp ảnh, quay video HD (lên tới 60s), cắt ảnh tỉ lệ vuông Locket |
 
 ---
@@ -194,16 +195,35 @@
   - Bọc toàn bộ các `React.lazy()` component bằng `<Suspense fallback={null}>` (bao gồm `NotificationPrompt`, `StreaksCalender`, `BottomHomeScreen`, v.v.).
   - Bọc try-catch an toàn tuyệt đối cho các hàm phân tích dữ liệu `JSON.parse` từ `localStorage` (`getUser`, `streak`).
   - Loại bỏ màu chữ trắng cố định trong `:root` của `src/index.css` để DaisyUI điều khiển màu sắc chính xác.
+
 ### 🔹 Giai đoạn 15: Chuẩn Hóa Toàn Diện Bộ Icon Locket Gold & Tài Nguyên Tĩnh
-- **Đồng bộ hóa 35 App Icon từ thư mục Downloads**:
-  - Trích xuất toàn bộ 35 icon chuẩn iPhone (`*60x60@2x.png`) từ `C:\Users\ADMIN\Downloads\AppIcons\AppIcons`.
-  - Loại bỏ hoàn toàn các file `~ipad` không cần thiết để tránh lỗi mã hóa URL trên Linux CDN.
-  - Chuẩn hóa tên file quốc tế và url-safe trong `public/app-icons/` (ví dụ: `gold_on_black.png`, `pastel_3d_gold.png`, v.v.).
-- **Tối ưu hóa Routing Static Files trong `vercel.json`**:
-  - Cập nhật quy tắc SPA rewrite để loại trừ các thư mục tĩnh (`/app-icons/`, `/images/`, `/fonts/`, `/icons/`), đảm bảo máy chủ luôn trả về file ảnh gốc thay vì file `index.html`.
-- **Cơ chế PWA & Cache-Busting**:
-  - Bật `immediate: true` cho Service Worker registration trong `src/main.jsx`.
-  - Bổ sung cơ chế auto-retry phá vỡ bộ nhớ đệm (`?v=timestamp`) trong `AppIconPicker.jsx`.
+- **Chuyển đổi định dạng Apple CgBI sang PNG chuẩn W3C**:
+  - Giải mã và chuẩn hóa toàn bộ 70 tệp icon iOS từ định dạng nén tối ưu hóa riêng của Apple (`CgBI`) sang định dạng chuẩn Web W3C PNG.
+  - Loại bỏ các file `~ipad` không cần thiết, đổi đường dẫn tĩnh sang `/locket-icons/` để phá bỏ hoàn toàn bộ nhớ đệm CDN cũ.
+- **Cập nhật Service Worker Caching Strategy**:
+  - Chuyển chiến lược cache ảnh PWA từ `CacheFirst` sang `StaleWhileRevalidate` với `cacheName: "images-cache-v2"`.
+  - Thêm cơ chế tự động xóa bộ nhớ đệm cũ bị hỏng trong `src/main.jsx`.
+
+### 🔹 Giai đoạn 16: Tích Hợp Locket API Serverless Proxy, Supabase Storage & Khắc Phục Lỗi Hệ Thống
+- **Xây dựng Vercel Serverless Function cho Locket API (`api/locket/[action].js`)**:
+  - Chuyển tiếp các API Locket (`fetchUserV2`, `getLatestMomentV2`, `getAllFriendsV2`, `reactToMoment`, `sendChatMessageV2`, `postMomentV2`).
+  - Tự động gắn kèm Header nhận diện ứng dụng iOS: `X-Ios-Bundle-Identifier: com.locket.Locket` và Bearer Token của người dùng, vượt qua hoàn toàn rào cản CORS trên trình duyệt.
+- **Sửa lỗi nút chụp ảnh tự động chụp khi rê chuột**:
+  - Tách riêng hàm `cancelHold()` trong [`CameraButton.jsx`](file:///D:/Work/Client-Locket-Xwuan-main/src/pages/LocketCameraBeta/MainHomeScreen/ActionControls/MediaCapture/CameraButton.jsx), ngăn việc `onMouseLeave` gọi `endHold()` khiến camera chụp nhầm.
+- **Khắc phục tràn viền khung camera (Hardware Acceleration)**:
+  - Áp dụng `rounded-[48px]`, `-webkit-mask-image: -webkit-radial-gradient(white, black)` và `isolation: isolate` trực tiếp vào thẻ `<video>` và container [`MediaPreview/index.jsx`](file:///D:/Work/Client-Locket-Xwuan-main/src/pages/LocketCameraBeta/MainHomeScreen/Layout/MediaPreview/index.jsx).
+- **Sửa lỗi ép kiểu JavaScript chặn tải ảnh 1.23 MB**:
+  - Khắc phục biểu thức `isSizeMedia > maxFileSize` khi `maxFileSize === null` (đặc quyền VIP không giới hạn), tránh việc JS ép `null` về `0` gây chặn upload nhầm trong [`MediaControls/index.jsx`](file:///D:/Work/Client-Locket-Xwuan-main/src/pages/LocketCameraBeta/MainHomeScreen/ActionControls/MediaControls/index.jsx).
+- **Sửa lỗi sập giao diện React Error #31**:
+  - Ngăn chặn việc render trực tiếp đối tượng lỗi `{ code, message }` vào JSX trong [`IncomingRequests.jsx`](file:///D:/Work/Client-Locket-Xwuan-main/src/pages/LocketCameraBeta/ModalViews/FriendsContainer/IncomingRequests.jsx), [`OutgoingRequest.jsx`](file:///D:/Work/Client-Locket-Xwuan-main/src/pages/LocketCameraBeta/ModalViews/FriendsContainer/OutgoingRequest.jsx) và [`FriendsServices.js`](file:///D:/Work/Client-Locket-Xwuan-main/src/services/LocketXwuanServices/FriendsServices.js).
+- **Sửa lỗi hiển thị ngày tháng `ngày NaN thg NaN, NaN`**:
+  - Xây dựng bộ chuyển đổi đa định dạng `parseToDate` trong [`src/utils/Formats/formatTimeAgo.js`](file:///D:/Work/Client-Locket-Xwuan-main/src/utils/Formats/formatTimeAgo.js) xử lý chính xác timestamp đối tượng Firestore `{ _seconds: ... }`.
+- **Sửa lỗi thả react và gửi tin nhắn không tới tài khoản Locket**:
+  - Cập nhật [`SendReactMoment`](file:///D:/Work/Client-Locket-Xwuan-main/src/services/LocketXwuanServices/ActionMoments.js) để lấy chính xác `owner_uid` từ người bạn sở hữu bài viết thay vì UID của người gửi.
+- **Đồng bộ lịch sử bài viết qua Google Cloud Firestore Database**:
+  - Tích hợp truy vấn `structuredQuery` trực tiếp vào Google Firestore Database (`projects/locket-camera/databases/(default)/documents:runQuery`) để tải toàn bộ bài viết trong quá khứ của bạn bè.
+- **Chuyển đổi tải lên ảnh/video sang Supabase Storage**:
+  - Thay thế endpoint presigned URL cũ bằng bộ tải lên trực tiếp vào bucket **Supabase Storage (`moments-media`)** trong [`StorageServices.js`](file:///D:/Work/Client-Locket-Xwuan-main/src/services/LocketXwuanServices/StorageServices.js), loại bỏ triệt để lỗi `404 (Tạo payload thất bại)`.
 
 ---
 
@@ -215,8 +235,7 @@
 
 ---
 
-## 📌 4. Checklist & Kế hoạch phát triển tiếp theo
+## 📌 4. Checklist Lưu Trữ & Sẵn Sàng Tái Khởi Động
 - [x] Triển khai thành công lên Vercel + Supabase.
 - [x] Đồng bộ trọn bộ 35 icon Locket Gold và logo thương hiệu Locket Xwuan.
-- [ ] Tinh chỉnh giao diện cá nhân hóa theo sở thích của bạn (giao diện dark mode, font chữ, layout camera).
-- [ ] Tối ưu hóa bộ nhớ đệm Offline IndexedDB để xem lại moments mượt mà ngay cả khi không có mạng.
+- [x] Toàn bộ mã nguồn, cấu hình và tài liệu được lưu trữ nguyên vẹn trên GitHub.

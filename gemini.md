@@ -47,6 +47,7 @@ Tài liệu này định nghĩa các **quy tắc cốt lõi, tiêu chuẩn phát
 * **Bản quyền VIP Vĩnh Viễn**: Toàn bộ các kiểm tra giới hạn gói người dùng phải luôn được mở khóa (`useFeatureVisible = true`, `max_uploads = -1`, `storage_limit_mb = -1`, quay video tối đa 60s).
 * **Không phụ thuộc Backend bên ngoài**: Code phải đảm bảo chạy độc lập, tự chủ hoàn toàn.
 * **Tương thích Supabase & Vercel**: Duy trì tính tương thích chuẩn để khi người dùng quyết định đưa lên Supabase + Vercel chỉ cần 1 bước cấu hình là hoạt động ngay.
+* **Lưu trữ & Serverless Proxy**: Sử dụng Supabase Storage (`moments-media`) cho việc lưu trữ media và Vercel Serverless Function (`api/locket/[action].js`) kèm định danh iOS (`com.locket.Locket`) cho việc giao tiếp với Locket Camera & Google Firestore.
 
 ---
 
